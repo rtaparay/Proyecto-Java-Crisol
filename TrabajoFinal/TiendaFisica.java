@@ -51,20 +51,15 @@ public class TiendaFisica extends Tienda {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
-        super.imprimir();
 
-        System.out.println("M2: " + this.getM2());
-        System.out.println("Distrito: " + this.getDistrito());
-
-        String strCC = "";
-        if (this.isCentroComercial()) {
-            strCC = "Sí";
-        } else {
-            strCC = "No";
-        }
-        System.out.println("¿Está en un centro comercial?: " + strCC);
-
-        System.out.println("Costo de alquiler S/. " + this.getCostoAlquiler());
     }
 }

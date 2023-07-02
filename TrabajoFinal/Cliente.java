@@ -99,6 +99,14 @@ public class Cliente {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
 
     }

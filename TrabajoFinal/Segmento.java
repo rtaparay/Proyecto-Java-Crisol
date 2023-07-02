@@ -38,7 +38,15 @@ public class Segmento {
     public void registrar() {
 
     }
-    
+
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
 
     }

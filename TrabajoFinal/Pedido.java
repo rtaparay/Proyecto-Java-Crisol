@@ -89,6 +89,14 @@ public class Pedido {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
 
     }

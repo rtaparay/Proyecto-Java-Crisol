@@ -31,11 +31,16 @@ public class TiendaEcommerce extends Tienda {
 
     }
 
-    public void imprimir() {
-        super.imprimir();
+    public void modificar() {
 
-        System.out.println("Proveedor Cloud: " +  this.getProveedorCloud());
-        System.out.println("Costo de mantenimiento: S/. " +  this.getCostoMantenimiento());
     }
 
+    public void eliminar() {
+
+    }
+
+    public void imprimir() {
+
+
+    }
 }

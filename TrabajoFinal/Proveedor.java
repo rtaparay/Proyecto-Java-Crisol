@@ -29,8 +29,15 @@ public class Proveedor {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
-        System.out.println("Id proveedor: " + Integer.toString(this.getId_proveedor()));
-        System.out.println("Nombre proveedor: " + this.getNombreProveedor());
+
     }
 }

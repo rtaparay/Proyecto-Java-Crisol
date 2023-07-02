@@ -29,8 +29,15 @@ public class Categoria {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
-        System.out.println("Id categoría: " + Integer.toString(this.getId_categoria()));
-        System.out.println("Nombre categoría: " + this.getNombreCategoria());
+
     }
 }

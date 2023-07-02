@@ -59,6 +59,13 @@ public class Tienda {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
     public void imprimir() {
 
     }

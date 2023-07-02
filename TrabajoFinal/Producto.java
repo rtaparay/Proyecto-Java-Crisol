@@ -38,9 +38,17 @@ public class Producto {
     public void registrar() {
 
     }
+
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+
     public void imprimir() {
-        System.out.println("Id Producto: " + Integer.toString(this.getId_producto()));
-        System.out.println("Precio: S/. " + Double.toString(this.getPrecio()));
-        System.out.println("Tipo de producto: " + this.getTipoProducto());
+
+
     }
 }

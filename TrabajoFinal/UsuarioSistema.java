@@ -54,4 +54,19 @@ public class UsuarioSistema {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public void registrar() {
+
+    }
+
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
+    public void imprimir() {
+
+    }
 }

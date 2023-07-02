@@ -82,14 +82,14 @@ public class Libro extends Producto {
 
     }
 
+    public void modificar() {
+
+    }
+
+    public void eliminar() {
+
+    }
     public void imprimir() {
-        super.imprimir();
-        System.out.println("Id Libro: " + Integer.toString(this.getId_libro()));
-        System.out.println("ISBN: " + this.getISBN());
-        System.out.println("Nombre del libro: " + this.getNombreTitulo());
-        System.out.println("Id proveedor: " + Integer.toString(this.getId_proveedor()));
-        System.out.println("Edición: " + this.getEdicion());
-        System.out.println("Autor: " + this.getAutor());
-        System.out.println("Id categoría: " +  Integer.toString(this.getId_categoria()));
+
     }
 }
