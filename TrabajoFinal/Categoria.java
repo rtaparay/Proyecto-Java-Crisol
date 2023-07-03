@@ -3,8 +3,10 @@ package TrabajoFinal;
 public class Categoria {
     private int id_categoria;
     private String nombreCategoria;
+    private String libros;
+    private String productos;
 
-    public Categoria(int id_categoria, String nombreCategoria) {
+    public Categoria(int id_categoria, String nombreCategoria, String libros, String productos) {
         this.id_categoria = id_categoria;
         this.nombreCategoria = nombreCategoria;
     }
@@ -23,6 +25,21 @@ public class Categoria {
 
     public void setNombreCategoria(String nombreCategoria) {
         this.nombreCategoria = nombreCategoria;
+    }
+    public String getLibros() {
+        return libros;
+    }
+
+    public void setLibros(String libros) {
+        this.libros = libros;
+    }
+
+    public String getProductos() {
+        return productos;
+    }
+
+    public void setProductos(String productos) {
+        this.productos = productos;
     }
 
     public void registrar() {
