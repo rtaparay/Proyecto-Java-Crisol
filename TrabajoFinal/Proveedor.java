@@ -1,12 +1,14 @@
 package TrabajoFinal;
 
+import java.util.Scanner;
+
 public class Proveedor {
+    //Sergio Ayesta
     private int id_proveedor;
     private String nombreProveedor;
 
-    public Proveedor(int id_proveedor, String nombreProveedor) {
-        this.id_proveedor = id_proveedor;
-        this.nombreProveedor = nombreProveedor;
+    public Proveedor() {
+
     }
 
     public int getId_proveedor() {
@@ -26,7 +28,17 @@ public class Proveedor {
     }
 
     public void registrar() {
+        Scanner sc = new Scanner(System.in);
+        int codigo;
+        String nombre;
 
+        System.out.println("Ingrese id del proveedor: ");
+        codigo = Integer.parseInt(sc.nextLine());
+        System.out.println("Ingrese el nombre del proveedor: ");
+        nombre = sc.nextLine();
+
+        this.setId_proveedor(codigo);
+        this.setNombreProveedor(nombre);
     }
 
     public void modificar() {
@@ -38,6 +50,8 @@ public class Proveedor {
     }
 
     public void imprimir() {
-
+        System.out.println("Id proveedor: " + this.getId_proveedor() +
+                ", Nombre del proveedor: " + this.getNombreProveedor()
+        );
     }
 }
