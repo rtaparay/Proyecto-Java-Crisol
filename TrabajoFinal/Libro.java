@@ -79,17 +79,80 @@ public class Libro extends Producto {
     }
 
     public void registrar() {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Ingrese el ID del libro: ");
+        id_libro = scanner.nextInt();
+
+        System.out.println("Ingrese el ISBN del libro: ");
+        scanner.nextLine(); // Limpiar el buffer de entrada
+        ISBN = scanner.nextLine();
+
+        System.out.println("Ingrese el nombre/título del libro: ");
+        NombreTitulo = scanner.nextLine();
+
+        System.out.println("Ingrese el ID del proveedor del libro: ");
+        id_proveedor = scanner.nextInt();
+
+        System.out.println("Ingrese la edición del libro: ");
+        scanner.nextLine(); // Limpiar el buffer de entrada
+        edicion = scanner.nextLine();
+
+        System.out.println("Ingrese el autor del libro: ");
+        autor = scanner.nextLine();
+
+        System.out.println("Ingrese el ID de la categoría del libro: ");
+        id_categoria = scanner.nextInt();
+
+        System.out.println("El libro ha sido registrado con éxito.");
     }
 
     public void modificar() {
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Ingrese el nuevo ISBN del libro: ");
+        ISBN = scanner.nextLine();
+
+        System.out.println("Ingrese el nuevo nombre/título del libro: ");
+        NombreTitulo = scanner.nextLine();
+
+        System.out.println("Ingrese el nuevo ID del proveedor del libro: ");
+        id_proveedor = scanner.nextInt();
+
+        System.out.println("Ingrese la nueva edición del libro: ");
+        scanner.nextLine(); // Limpiar el buffer de entrada
+        edicion = scanner.nextLine();
+
+        System.out.println("Ingrese el nuevo autor del libro: ");
+        autor = scanner.nextLine();
+
+        System.out.println("Ingrese el nuevo ID de la categoría del libro: ");
+        id_categoria = scanner.nextInt();
+
+        System.out.println("El libro ha sido modificado con éxito.");
     }
 
     public void eliminar() {
+        id_libro = 0;
+        ISBN = "";
+        NombreTitulo = "";
+        id_proveedor = 0;
+        edicion = "";
+        autor = "";
+        id_categoria = 0;
 
+        System.out.println("El libro ha sido eliminado.");
     }
+
     public void imprimir() {
-
+        System.out.println("Detalles del libro:");
+        System.out.println("ID: " + id_libro);
+        System.out.println("ISBN: " + ISBN);
+        System.out.println("Nombre/Título: " + NombreTitulo);
+        System.out.println("ID del proveedor: " + id_proveedor);
+        System.out.println("Edición: " + edicion);
+        System.out.println("Autor: " + autor);
+        System.out.println("ID de la categoría: " + id_categoria);
     }
+    
 }
