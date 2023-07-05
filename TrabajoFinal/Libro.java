@@ -1,4 +1,5 @@
 package TrabajoFinal;
+import java.util.Scanner;
 
 public class Libro extends Producto {
     private int id_libro;
