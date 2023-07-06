@@ -16,7 +16,7 @@ public class Main {
 
         while (continuar.equals("S")) {
             System.out.println("===============================================================================");
-            System.out.println("P E D I D O S");
+            System.out.println("P R O V E E D O R E S");
             System.out.println("Seleccione un submenu --> 1=Registrar | 2=Modificar | 3=Eliminar | 4=Imprimir");
             System.out.println("===============================================================================");
     
@@ -25,6 +25,12 @@ public class Main {
             switch (proveedor_submenu_opcion) {
                 case "1": //Registrar
                     dataProveedores = proveedor_submenu_registro(dataProveedores);
+                    break;
+                case "2": //Modificar
+                    dataProveedores = proveedor_submenu_modificar(dataProveedores);
+                    break;
+                case "3": //Eliminar
+                    dataProveedores = proveedor_submenu_eliminar(dataProveedores);
                     break;
                 case "4": //Imprimir
                     proveedor_submenu_imprimir(dataProveedores);
@@ -81,6 +87,20 @@ public class Main {
         p1.registrar();
         System.out.println("");
         data.add(p1);
+        return data;
+    }
+
+    public static ArrayList<Proveedor> proveedor_submenu_modificar(ArrayList<Proveedor> data) {
+        //Sergio Ayesta
+        Proveedor p1 = new Proveedor();
+        data = p1.modificar(data);
+        return data;
+    }
+
+    public static ArrayList<Proveedor> proveedor_submenu_eliminar(ArrayList<Proveedor> data) {
+        //Sergio Ayesta
+        Proveedor p1 = new Proveedor();
+        data = p1.eliminar(data);
         return data;
     }
 
