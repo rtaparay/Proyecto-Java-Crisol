@@ -96,18 +96,26 @@ public class Cliente {
     }
 
     public void registrar() {
-
+        System.out.println("Cliente registrado correctamente.");
     }
 
     public void modificar() {
-
+        System.out.println("Cliente modificado correctamente.");
     }
 
     public void eliminar() {
-
+        System.out.println("Cliente eliminado correctamente.");
     }
 
     public void imprimir() {
-
+        System.out.println("ID Cliente: " + id_cliente);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Apellido Paterno: " + apellidoPaterno);
+        System.out.println("Apellido Materno: " + apellidoMaterno);
+        System.out.println("Recency: " + recency);
+        System.out.println("Frecuency: " + frecuency);
+        System.out.println("Monetary Value: " + monetaryValue);
+        System.out.println("RFM Score: " + RFM_score);
+        System.out.println("ID Segmento: " + id_segmento);
     }
 }

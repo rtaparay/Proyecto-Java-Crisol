@@ -36,19 +36,21 @@ public class Segmento {
     }
 
     public void registrar() {
-
+        System.out.println("Segmento registrado correctamente.");
     }
 
     public void modificar() {
-
+        System.out.println("Segmento modificado correctamente.");
     }
 
     public void eliminar() {
-
+        System.out.println("Segmento eliminado correctamente.");
     }
 
     public void imprimir() {
-
+        System.out.println("ID Segmento: " + id_segmento);
+        System.out.println("Nombre Segmento: " + nombre_segmento);
+        System.out.println("Porcentaje de Descuento: " + porcentaje_descuento);
     }
 
 }
