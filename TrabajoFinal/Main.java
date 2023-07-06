@@ -159,7 +159,7 @@ public class Main {
     }
 
     public static ArrayList<Proveedor> proveedor_submenu_registro(ArrayList<Proveedor> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         Proveedor p1 = new Proveedor();
         p1.registrar();
         System.out.println("");
@@ -168,21 +168,21 @@ public class Main {
     }
 
     public static ArrayList<Proveedor> proveedor_submenu_modificar(ArrayList<Proveedor> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         Proveedor p1 = new Proveedor();
         data = p1.modificar(data);
         return data;
     }
 
     public static ArrayList<Proveedor> proveedor_submenu_eliminar(ArrayList<Proveedor> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         Proveedor p1 = new Proveedor();
         data = p1.eliminar(data);
         return data;
     }
 
     public static void proveedor_submenu_imprimir(ArrayList<Proveedor> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         System.out.println("====================================");
         System.out.println("Listado de proveedores registrados");
         System.out.println("====================================");
@@ -192,7 +192,7 @@ public class Main {
     }
 
     public static ArrayList<Pedido> pedido_submenu_registro(ArrayList<Pedido> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         Pedido pe1 = new Pedido();
         pe1.registrar();
         System.out.println("");
@@ -201,7 +201,7 @@ public class Main {
     }
 
     public static void pedido_submenu_imprimir(ArrayList<Pedido> data) {
-        //RAUL TAPARA
+        //Sergio Ayesta
         System.out.println("====================================");
         System.out.println("Listado de pedidos registrados");
         System.out.println("====================================");

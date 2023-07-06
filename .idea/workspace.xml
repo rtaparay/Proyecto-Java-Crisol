@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0921af98-da1e-4a37-af4a-e88368ffd4ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrabajoFinal/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/TrabajoFinal/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrabajoFinal/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/TrabajoFinal/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrabajoFinal/Segmento.java" beforeDir="false" afterPath="$PROJECT_DIR$/TrabajoFinal/Segmento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-Java-Crisol/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-Java-Crisol/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0921af98-da1e-4a37-af4a-e88368ffd4ff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
