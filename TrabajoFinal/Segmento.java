@@ -1,5 +1,7 @@
 package TrabajoFinal;
 
+import java.util.ArrayList;
+
 public class Segmento {
     private char id_segmento;
     private String nombre_segmento;
@@ -9,6 +11,10 @@ public class Segmento {
         this.id_segmento = id_segmento;
         this.nombre_segmento = nombre_segmento;
         this.porcentaje_descuento = porcentaje_descuento;
+    }
+
+    public Segmento() {
+
     }
 
     public char getId_segmento() {
@@ -43,7 +49,7 @@ public class Segmento {
         System.out.println("Segmento modificado correctamente.");
     }
 
-    public void eliminar() {
+    public void eliminar(ArrayList<Segmento> data) {
         System.out.println("Segmento eliminado correctamente.");
     }
 
@@ -53,4 +59,7 @@ public class Segmento {
         System.out.println("Porcentaje de Descuento: " + porcentaje_descuento);
     }
 
+    public ArrayList<Segmento> modificar(ArrayList<Segmento> data) {
+        return null;
+    }
 }

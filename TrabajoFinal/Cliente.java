@@ -1,5 +1,7 @@
 package TrabajoFinal;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private int id_cliente;
     private String nombre;
@@ -21,6 +23,10 @@ public class Cliente {
         this.monetaryValue = monetaryValue;
         this.RFM_score = RFM_score;
         this.id_segmento = id_segmento;
+    }
+
+    public Cliente() {
+
     }
 
     public int getId_cliente() {
@@ -103,7 +109,7 @@ public class Cliente {
         System.out.println("Cliente modificado correctamente.");
     }
 
-    public void eliminar() {
+    public void eliminar(ArrayList<Cliente> data) {
         System.out.println("Cliente eliminado correctamente.");
     }
 
@@ -117,5 +123,9 @@ public class Cliente {
         System.out.println("Monetary Value: " + monetaryValue);
         System.out.println("RFM Score: " + RFM_score);
         System.out.println("ID Segmento: " + id_segmento);
+    }
+
+    public ArrayList<Cliente> modificar(ArrayList<Cliente> data) {
+        return null;
     }
 }
