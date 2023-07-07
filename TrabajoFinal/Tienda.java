@@ -1,18 +1,16 @@
 package TrabajoFinal;
 
-public class Tienda {
-    private int id_tienda;
-    private String RUC;
-    private String tipoTienda;
-    private String nombreTienda;
-    private int trafico;
+import java.util.ArrayList;
 
-    public Tienda(int id_tienda, String RUC, String tipoTienda, String nombreTienda, int trafico) {
-        this.id_tienda = id_tienda;
-        this.RUC = RUC;
-        this.tipoTienda = tipoTienda;
-        this.nombreTienda = nombreTienda;
-        this.trafico = trafico;
+public class Tienda {
+    protected int id_tienda;
+    protected String RUC;
+    protected String tipoTienda;
+    protected String nombreTienda;
+    protected int trafico;
+
+    public Tienda() {
+
     }
 
     public int getId_tienda() {
@@ -55,18 +53,9 @@ public class Tienda {
         this.trafico = trafico;
     }
 
-    public void registrar() {
+    public void registrar() {}
+    public void modificar() {}
 
-    }
-
-    public void modificar() {
-
-    }
-
-    public void eliminar() {
-
-    }
-    public void imprimir() {
-
-    }
+    public void eliminar() {}
+    public void imprimir() {}
 }

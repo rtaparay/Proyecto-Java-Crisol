@@ -30,13 +30,11 @@ public class Proveedor {
 
     public void registrar() {
         Scanner sc = new Scanner(System.in);
-        int codigo;
-        String nombre;
 
         System.out.println("Ingrese id del proveedor: ");
-        codigo = Integer.parseInt(sc.nextLine());
+        int codigo = Integer.parseInt(sc.nextLine());
         System.out.println("Ingrese el nombre del proveedor: ");
-        nombre = sc.nextLine();
+        String nombre = sc.nextLine();
 
         this.setId_proveedor(codigo);
         this.setNombreProveedor(nombre);
@@ -83,7 +81,7 @@ public class Proveedor {
         }
 
         if (idExisteEnData == false) {
-            System.out.println("El ID de proveedor que intenta modificar no existe en la base de datos");
+            System.out.println("El ID de proveedor que intenta eliminar no existe en la base de datos");
         } else {
             data.remove(index);
             System.out.println("La eliminación del proveedor se realizó con éxito");

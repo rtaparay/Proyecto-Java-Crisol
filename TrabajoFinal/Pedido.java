@@ -1,5 +1,6 @@
 package TrabajoFinal;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pedido {
@@ -83,33 +84,25 @@ public class Pedido {
 
     public void registrar() {
         Scanner sc = new Scanner(System.in);
-        int id_p;
-        int id_t;
-        int id_c;
-        String f;
-        double b;
-        double dscto;
-        double igv;
-        double total;
 
         System.out.println("Ingrese id del pedido: ");
-        id_p = Integer.parseInt(sc.nextLine());
+        int id_p = Integer.parseInt(sc.nextLine());
 
         System.out.println("Ingrese el id de la tienda: ");
-        id_t = Integer.parseInt(sc.nextLine());
+        int id_t = Integer.parseInt(sc.nextLine());
 
         System.out.println("Ingrese el id del cliente: ");
-        id_c = Integer.parseInt(sc.nextLine());
+        int id_c = Integer.parseInt(sc.nextLine());
 
         System.out.println("Ingrese la fecha del pedido: ");
-        f = sc.nextLine();
+        String f = sc.nextLine();
 
         System.out.println("Ingrese el monto bruto del pedido: ");
-        b = sc.nextDouble();
+        double b = sc.nextDouble();
 
-        dscto = calcularDescuento(b);
-        igv = calcularIGV(b,dscto);
-        total = calcularImporteTotal(b,dscto,igv);
+        double dscto = calcularDescuento(b);
+        double igv = calcularIGV(b,dscto);
+        double total = calcularImporteTotal(b,dscto,igv);
 
         this.setId_pedido(id_p);
         this.setId_tienda(id_t);
@@ -121,9 +114,76 @@ public class Pedido {
         this.setImporteTotal(total);
     }
 
-    public void modificar() {}
+    public ArrayList<Pedido> modificar(ArrayList<Pedido> data) {
+        Scanner sc = new Scanner(System.in);
 
-    public void eliminar() {}
+        System.out.println("Indique el ID del pedido que desea modificar");
+        int id = Integer.parseInt(sc.nextLine());
+        boolean idExisteEnData = false;
+        for (Pedido p: data) {
+            if (p.getId_pedido() == id) {
+                idExisteEnData = true;
+                System.out.println("Se encontraron los siguientes datos registrados con el ID: " + id);
+                p.imprimir();
+                System.out.println("");
+
+                System.out.println("Ingrese el ID de tienda del pedido: ");
+                int id_t = Integer.parseInt(sc.nextLine());
+
+                System.out.println("Ingrese el ID del cliente del pedido: ");
+                int id_c = Integer.parseInt(sc.nextLine());
+
+                System.out.println("Ingrese la FECHA del pedido: ");
+                String f = sc.nextLine();
+
+                System.out.println("Ingrese el MONTO BRUTO del pedido: ");
+                double b = sc.nextDouble();
+
+                double dscto = calcularDescuento(b);
+                double igv = calcularIGV(b,dscto);
+                double total = calcularImporteTotal(b,dscto,igv);
+
+                p.setId_tienda(id_t);
+                p.setId_cliente(id_c);
+                p.setFecha(f);
+                p.setImporteBruto(b);
+                p.setDescuento(dscto);
+                p.setIgv(igv);
+                p.setImporteTotal(total);
+                System.out.println("La modificación de los datos del pedido se realizaron con éxito");
+            }
+        }
+        if (idExisteEnData == false) {
+            System.out.println("El ID del pedido que intenta modificar no existe en la base de datos");
+        }
+        return data;
+    }
+
+    public ArrayList<Pedido> eliminar(ArrayList<Pedido> data) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Indique el ID del pedido que desea ELIMINAR");
+        int id = Integer.parseInt(sc.nextLine());
+        boolean idExisteEnData = false;
+        int index = 0;
+
+        for (Pedido p: data) {
+            if (p.getId_pedido() == id) {
+                idExisteEnData = true;
+                System.out.println("Se encontraron los siguientes datos registrados con el ID: " + id);
+                p.imprimir();
+                index = data.indexOf(p);
+                break;
+            }
+        }
+
+        if (idExisteEnData == false) {
+            System.out.println("El ID del pedido que intenta eliminar no existe en la base de datos");
+        } else {
+            data.remove(index);
+            System.out.println("La eliminación del pedido se realizó con éxito");
+        }
+        return data;
+    }
 
     public void imprimir() {
         System.out.println("Id pedido: " + this.getId_pedido() +
