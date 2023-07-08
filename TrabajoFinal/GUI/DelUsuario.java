@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.UsuarioSistema;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -7,22 +9,30 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DelUsuario extends JFrame {
     private JTable tblUsuarios;
     private JButton btnEliminar;
 
-    public DelUsuario() {
+    public DelUsuario(UsuarioSistema user) {
         setTitle("Lista de Usuarios");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // Datos de ejemplo
-        Object[][] data = {
-                {"1", "Usuario1", "contraseña1", "Administrador", "Activo"},
-                {"2", "Usuario2", "contraseña2", "Usuario Normal", "Activo"},
-                {"3", "Usuario3", "contraseña3", "Usuario Normal", "Inactivo"}
-        };
+        ArrayList<UsuarioSistema> luser = new ArrayList<>();
+        luser = user.getLuser();
+        int numUsuarios = luser.size();
+        Object[][] data = new Object[numUsuarios][5];
+        for (int i = 0; i < numUsuarios; i++) {
+            UsuarioSistema usuario = luser.get(i);
+            data[i][0] = usuario.getId_usuario();
+            data[i][1] = usuario.getNombre();
+            data[i][2] = usuario.getPassword();
+            data[i][3] = usuario.getTipoUsuario();
+            data[i][4] = usuario.getEstado();
+        }
 
         // Nombres de las columnas
         String[] columnNames = {"Id Usuario", "Nombre", "Contraseña", "Tipo Usuario", "Estado"};
@@ -55,11 +65,12 @@ public class DelUsuario extends JFrame {
                         JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     // Obtener el índice de la fila seleccionada
-                    int selectedRow = tblUsuarios.getSelectedRow();
+                    int selectedRow = tblUsuarios.getSelectedRow()-1;
 
                     // Eliminar el registro del modelo de tabla
-                    tableModel.removeRow(selectedRow);
-
+                    tableModel.removeRow(selectedRow+1);
+                    String idUsuario = tblUsuarios.getValueAt(selectedRow, 0).toString();
+                    user.eliminar(idUsuario,user.getLuser());
                     // Mostrar mensaje de éxito
                     JOptionPane.showMessageDialog(DelUsuario.this, "El registro ha sido eliminado exitosamente.");
 

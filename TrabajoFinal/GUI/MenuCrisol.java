@@ -1,17 +1,22 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.UsuarioSistema;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 public class MenuCrisol extends JFrame {
     private JMenuBar menuBar;
     private JMenu menuCategoria, menuCliente, menuLibreria, menuLibro, menuPedido, menuProducto, menuProveedor,
             menuSegmento, menuTiendaEcommerce, menuTiendaFisica, menuUsuario;
     private JMenuItem itemRegistrar, itemModificar, itemEliminar, itemActualizar;
 
+
     public MenuCrisol() {
+
+
         // Configuración básica del Menu
         setTitle("Sistema de Gestion Crisol"); //Cambiarle Titulo
         //Podemos agregar una imagen de fondo.
@@ -53,6 +58,10 @@ public class MenuCrisol extends JFrame {
     }
 
     private JMenu crearMenu(String nombre) {
+        //TODO trasladarlo al main definitivo
+        UsuarioSistema user = new UsuarioSistema("","","","","");
+        user.cargaInicial();
+        final ArrayList<UsuarioSistema> luser  = user.getLuser();
         JMenu menu = new JMenu(nombre);
 
         // Creación de los elementos del menú
@@ -91,7 +100,7 @@ public class MenuCrisol extends JFrame {
                     RegistraTiendaFisica registraTiendaFisica = new RegistraTiendaFisica();
                 }
                 if(nombre=="Usuario"){
-                    RegistraUsuarioSistema registraUsuarioSistema = new RegistraUsuarioSistema();
+                    RegistraUsuarioSistema registraUsuarioSistema = new RegistraUsuarioSistema(user);
                 }
             }
         });
@@ -122,7 +131,7 @@ public class MenuCrisol extends JFrame {
                     UpdListTiendaFisica updListTiendaFisica = new UpdListTiendaFisica();
                 }
                 if(nombre=="Usuario"){
-                    UpdListUsuario updListUsuario = new UpdListUsuario();
+                    UpdListUsuario updListUsuario = new UpdListUsuario(user);
                 }
             }
         });
@@ -153,41 +162,51 @@ public class MenuCrisol extends JFrame {
                     DelTiendaFisica delTiendaFisica = new DelTiendaFisica();
                 }
                 if(nombre=="Usuario"){
-                    DelUsuario delUsuario = new DelUsuario();
+                    DelUsuario delUsuario = new DelUsuario(user);
                 }
             }
         });
-        itemActualizar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if(nombre=="Categoría"){
-                    ListaCategoria listaCategoria = new ListaCategoria();
+
+
+
+            itemActualizar.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+
+                    if(nombre=="Categoría"){
+                        ListaCategoria listaCategoria = new ListaCategoria();
+                    }
+                    if(nombre=="Cliente"){
+                        ListaCliente listaCliente = new ListaCliente();
+                    }
+                    if(nombre=="Libro"){
+                        ListaLibro listaLibro = new ListaLibro();
+                    }
+                    if(nombre=="Pedido"){
+                        ListaPedido listaPedido = new ListaPedido();
+                    }
+                    if(nombre=="Proveedor"){
+                        ListaProveedor listaProveedor = new ListaProveedor();
+                    }
+                    if(nombre=="Segmento"){
+                        ListaSegmento listaSegmento = new ListaSegmento();
+                    }
+                    if(nombre=="Tienda Ecomerce"){
+                        ListaTiendaEcommerce listaTiendaEcommerce = new ListaTiendaEcommerce();
+                    }
+                    if(nombre=="Tienda Fisica"){
+                        ListaTiendaFisica listaTiendaFisica = new ListaTiendaFisica();
+                    }
+                    if(nombre=="Usuario"){
+                        ListaUsuarioSistema listaUsuario = new ListaUsuarioSistema(luser);
+                    }
+
+
                 }
-                if(nombre=="Cliente"){
-                    ListaCliente listaCliente = new ListaCliente();
-                }
-                if(nombre=="Libro"){
-                    ListaLibro listaLibro = new ListaLibro();
-                }
-                if(nombre=="Pedido"){
-                    ListaPedido listaPedido = new ListaPedido();
-                }
-                if(nombre=="Proveedor"){
-                    ListaProveedor listaProveedor = new ListaProveedor();
-                }
-                if(nombre=="Segmento"){
-                    ListaSegmento listaSegmento = new ListaSegmento();
-                }
-                if(nombre=="Tienda Ecomerce"){
-                    ListaTiendaEcommerce listaTiendaEcommerce = new ListaTiendaEcommerce();
-                }
-                if(nombre=="Tienda Fisica"){
-                    ListaTiendaFisica listaTiendaFisica = new ListaTiendaFisica();
-                }
-                if(nombre=="Usuario"){
-                    ListaTiendaFisica listaTiendaFisica = new ListaTiendaFisica();
-                }
-            }
-        });
+
+
+            });
+
 
         // Agregar los elementos al menú
         menu.add(itemRegistrar);
@@ -202,6 +221,8 @@ public class MenuCrisol extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+
+                //Apertura Formulario maestro
                 MenuCrisol menuCrisol = new MenuCrisol();
                 menuCrisol.setVisible(true);
             }

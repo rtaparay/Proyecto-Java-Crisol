@@ -1,13 +1,17 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.UsuarioSistema;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.nio.file.attribute.UserPrincipal;
+import java.util.ArrayList;
 
 public class ListaUsuarioSistema extends JFrame {
     private JTable tblUsuarios;
 
-    public ListaUsuarioSistema() {
+    public ListaUsuarioSistema(ArrayList<UsuarioSistema> luser) {
         // Configuración básica del formulario
         setTitle("Lista de Usuarios del Sistema");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,10 +29,20 @@ public class ListaUsuarioSistema extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblUsuarios.setModel(model);
 
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarUsuario("1", "Usuario1", "password1", "Administrador", "Activo");
-        agregarUsuario("2", "Usuario2", "password2", "Empleado", "Inactivo");
-        agregarUsuario("3", "Usuario3", "password3", "Visitante", "Activo");
+        //UsuarioSistema user = new UsuarioSistema("","","","","");
+        //ArrayList<UsuarioSistema> luser = new ArrayList<UsuarioSistema>();
+        //ArrayList<UsuarioSistema> luser1 = new ArrayList<UsuarioSistema>();
+        //Carga inicial con datos ficticios
+        //luser1 = user.cargaInicial(luser);
+        // Llenar la tabla que se mostrara en el formulario
+        for (UsuarioSistema usuario : luser) {
+            String idUsuario = usuario.getId_usuario();
+            String nombre = usuario.getNombre();
+            String password = usuario.getPassword();
+            String tipoUsuario = usuario.getTipoUsuario();
+            String estado = usuario.getEstado();
+            agregarUsuario(idUsuario, nombre, password, tipoUsuario, estado);
+        }
 
         // Ajustar tamaño y hacer visible el formulario
         pack();

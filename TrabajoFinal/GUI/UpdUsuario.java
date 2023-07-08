@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import TrabajoFinal.UsuarioSistema;
+import java.util.ArrayList;
 public class UpdUsuario extends JFrame {
     private JTextField txtIdUsuario;
     private JTextField txtNombre;
@@ -12,7 +13,7 @@ public class UpdUsuario extends JFrame {
     private JTextField txtTipoUsuario;
     private JTextField txtEstado;
 
-    public UpdUsuario(String idUsuario, String nombre, String contrasena, String tipoUsuario, String estado) {
+    public UpdUsuario(String idUsuario, String nombre, String contrasena, String tipoUsuario, String estado, UsuarioSistema user) {
         setTitle("Actualizar Usuario");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -60,7 +61,7 @@ public class UpdUsuario extends JFrame {
                     String estado = txtEstado.getText();
 
                     // Realizar la actualización en la base de datos o en la estructura de datos correspondiente
-
+                    user.modificar(idUsuario,nombre,contrasena,tipoUsuario,estado,user.getLuser());
                     // Mostrar mensaje de éxito
                     JOptionPane.showMessageDialog(UpdUsuario.this, "Registro actualizado exitosamente");
 
