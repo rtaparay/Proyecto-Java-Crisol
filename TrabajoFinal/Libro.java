@@ -1,5 +1,6 @@
 package TrabajoFinal;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Libro extends Producto {
     private int id_libro;
