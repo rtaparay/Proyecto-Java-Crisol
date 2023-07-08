@@ -22,6 +22,36 @@ public class Libro extends Producto {
         this.autor = autor;
         this.id_categoria = id_categoria;
     }
+    public void cargaInicial() {
+        ArrayList<Libro> listaLibros = new ArrayList<>();
+
+        Libro libro1 = new Libro(1, 10.99, "Tipo 1", 1, "ISBN1", "Título 1", 1, "Edición 1", "Autor 1", 1);
+        Libro libro2 = new Libro(2, 19.99, "Tipo 2", 2, "ISBN2", "Título 2", 2, "Edición 2", "Autor 2", 2);
+        Libro libro3 = new Libro(3, 14.99, "Tipo 1", 3, "ISBN3", "Título 3", 3, "Edición 3", "Autor 3", 3);
+        Libro libro4 = new Libro(4, 9.99, "Tipo 2", 4, "ISBN4", "Título 4", 1, "Edición 4", "Autor 4", 1);
+        Libro libro5 = new Libro(5, 12.99, "Tipo 1", 5, "ISBN5", "Título 5", 2, "Edición 5", "Autor 5", 2);
+        Libro libro6 = new Libro(6, 17.99, "Tipo 2", 6, "ISBN6", "Título 6", 3, "Edición 6", "Autor 6", 3);
+        Libro libro7 = new Libro(7, 8.99, "Tipo 1", 7, "ISBN7", "Título 7", 1, "Edición 7", "Autor 7", 1);
+        Libro libro8 = new Libro(8, 13.99, "Tipo 2", 8, "ISBN8", "Título 8", 2, "Edición 8", "Autor 8", 2);
+        Libro libro9 = new Libro(9, 11.99, "Tipo 1", 9, "ISBN9", "Título 9", 3, "Edición 9", "Autor 9", 3);
+        Libro libro10 = new Libro(10, 16.99, "Tipo 2", 10, "ISBN10", "Título 10", 1, "Edición 10", "Autor 10", 1);
+
+        listaLibros.add(libro1);
+        listaLibros.add(libro2);
+        listaLibros.add(libro3);
+        listaLibros.add(libro4);
+        listaLibros.add(libro5);
+        listaLibros.add(libro6);
+        listaLibros.add(libro7);
+        listaLibros.add(libro8);
+        listaLibros.add(libro9);
+        listaLibros.add(libro10);
+
+        this.setListaLibros(listaLibros);
+    }
+
+    public void setListaLibros(ArrayList<Libro> listaLibros) {
+    }
 
     public int getId_libro() {
         return id_libro;
@@ -79,72 +109,39 @@ public class Libro extends Producto {
         this.id_categoria = id_categoria;
     }
 
-    public void registrar() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ingrese el ID del libro: ");
-        id_libro = scanner.nextInt();
-
-        System.out.println("Ingrese el ISBN del libro: ");
-        scanner.nextLine(); // Limpiar el buffer de entrada
-        ISBN = scanner.nextLine();
-
-        System.out.println("Ingrese el nombre/título del libro: ");
-        NombreTitulo = scanner.nextLine();
-
-        System.out.println("Ingrese el ID del proveedor del libro: ");
-        id_proveedor = scanner.nextInt();
-
-        System.out.println("Ingrese la edición del libro: ");
-        scanner.nextLine(); // Limpiar el buffer de entrada
-        edicion = scanner.nextLine();
-
-        System.out.println("Ingrese el autor del libro: ");
-        autor = scanner.nextLine();
-
-        System.out.println("Ingrese el ID de la categoría del libro: ");
-        id_categoria = scanner.nextInt();
-
-        System.out.println("El libro ha sido registrado con éxito.");
+    @Override
+    public void registrar(Libro libro, ArrayList<Libro> listaLibros) {
+        listaLibros.add(libro);
+        this.setListaLibros(listaLibros);
     }
 
-    public void modificar() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ingrese el nuevo ISBN del libro: ");
-        ISBN = scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo nombre/título del libro: ");
-        NombreTitulo = scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo ID del proveedor del libro: ");
-        id_proveedor = scanner.nextInt();
-
-        System.out.println("Ingrese la nueva edición del libro: ");
-        scanner.nextLine(); // Limpiar el buffer de entrada
-        edicion = scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo autor del libro: ");
-        autor = scanner.nextLine();
-
-        System.out.println("Ingrese el nuevo ID de la categoría del libro: ");
-        id_categoria = scanner.nextInt();
-
-        System.out.println("El libro ha sido modificado con éxito.");
+       @Override
+    public void modificar(int idLibro, String nuevoISBN, String nuevoNombreTitulo, int nuevoIdProveedor, String nuevaEdicion,
+                          String nuevoAutor, int nuevoIdCategoria, ArrayList<Libro> listaLibros) {
+        for (Libro libro : listaLibros) {
+            if (libro.getId_libro() == idLibro) {
+                libro.setISBN(nuevoISBN);
+                libro.setNombreTitulo(nuevoNombreTitulo);
+                libro.setId_proveedor(nuevoIdProveedor);
+                libro.setEdicion(nuevaEdicion);
+                libro.setAutor(nuevoAutor);
+                libro.setId_categoria(nuevoIdCategoria);
+            }
+        }
+        this.setListaLibros(listaLibros);
     }
-
-    public void eliminar() {
-        id_libro = 0;
-        ISBN = "";
-        NombreTitulo = "";
-        id_proveedor = 0;
-        edicion = "";
-        autor = "";
-        id_categoria = 0;
-
-        System.out.println("El libro ha sido eliminado.");
+    @Override
+    public void eliminar(int idLibro, ArrayList<Libro> listaLibros) {
+        Iterator<Libro> iterator = listaLibros.iterator();
+        while (iterator.hasNext()) {
+            Libro libro = iterator.next();
+            if (libro.getId_libro() == idLibro) {
+                iterator.remove(); // Eliminar el elemento de manera segura
+            }
+        }
+        setListaLibros(listaLibros); // Actualizar el ArrayList listaLibros
     }
-
+    @Override
     public void imprimir() {
         System.out.println("Detalles del libro:");
         System.out.println("ID: " + id_libro);
