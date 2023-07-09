@@ -1,7 +1,7 @@
 package TrabajoFinal;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Producto {
+public abstract class Producto {
     private int id_producto;
     private double precio;
     private String tipoProducto;
