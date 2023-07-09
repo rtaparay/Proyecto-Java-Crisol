@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Categoria;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +11,7 @@ public class RegistraCategoria extends JFrame {
     private JTextField txtIdCategoria;
     private JTextField txtNombreCategoria;
 
-    public RegistraCategoria() {
+    public RegistraCategoria(Categoria cat) {
         // Configuración básica del formulario
         setTitle("Registro de Categoría");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,7 +29,7 @@ public class RegistraCategoria extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(RegistraCategoria.this, "¿Está seguro de grabar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    grabarRegistro();
+                    grabarRegistro(cat);
                 }
             }
         });
@@ -45,10 +47,14 @@ public class RegistraCategoria extends JFrame {
         setVisible(true);
     }
 
-    private void grabarRegistro() {
+    private void grabarRegistro(Categoria cat) {
         String idCategoria = txtIdCategoria.getText();
         String nombreCategoria = txtNombreCategoria.getText();
-
+        int pIntID = Integer.parseInt(idCategoria);
+        Categoria c1 = new Categoria(0,"");
+        c1.setId_categoria(pIntID);
+        c1.setNombreCategoria(nombreCategoria);
+        cat.registrar(c1,cat.getListaCategorias());
         // Aquí puedes realizar la lógica para grabar el registro en tu base de datos o en algún otro medio de almacenamiento
         // Por ahora, simplemente mostraremos un mensaje con los datos ingresados
         JOptionPane.showMessageDialog(this, "Registro grabado:\nID Categoría: " + idCategoria + "\nNombre de Categoría: " + nombreCategoria);

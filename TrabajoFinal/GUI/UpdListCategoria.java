@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Categoria;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -7,12 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class UpdListCategoria extends JFrame {
     private JTable tblCategorias;
     private JButton btnActualizar;
 
-    public UpdListCategoria() {
+    public UpdListCategoria(Categoria categoria) {
         // Configuración básica del formulario
         setTitle("Lista de Categorías");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -29,12 +32,16 @@ public class UpdListCategoria extends JFrame {
         String[] columnNames = {"ID Categoría", "Nombre de Categoría"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblCategorias.setModel(model);
-
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarCategoria("1", "Categoría 1");
-        agregarCategoria("2", "Categoría 2");
-        agregarCategoria("3", "Categoría 3");
-
+        ArrayList<Categoria> listaCategorias = categoria.getListaCategorias();
+        for(Categoria cat : listaCategorias) {
+            int idCategoria = cat.getId_categoria();
+            String nombreCategoria = cat.getNombreCategoria();
+            agregarCategoria(idCategoria, nombreCategoria);
+            // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
+            //agregarCategoria("1", "Categoría 1");
+            //agregarCategoria("2", "Categoría 2");
+            //agregarCategoria("3", "Categoría 3");
+        }
         // Agregar listener para el evento de selección de la tabla
         tblCategorias.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent event) {
@@ -48,10 +55,10 @@ public class UpdListCategoria extends JFrame {
         btnActualizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tblCategorias.getSelectedRow();
-                String idCategoria = (String) tblCategorias.getValueAt(filaSeleccionada, 0);
+                int idCategoria = (Integer) tblCategorias.getValueAt(filaSeleccionada, 0);
                 String nombreCategoria = (String) tblCategorias.getValueAt(filaSeleccionada, 1);
 
-                UpdCategoria updCategoria = new UpdCategoria(idCategoria, nombreCategoria);
+                UpdCategoria updCategoria = new UpdCategoria(idCategoria, nombreCategoria,categoria);
                 updCategoria.mostrarFormulario();
 
                 // Actualizar la fila en la tabla si el registro fue actualizado
@@ -75,7 +82,7 @@ public class UpdListCategoria extends JFrame {
         setVisible(true);
     }
 
-    private void agregarCategoria(String idCategoria, String nombreCategoria) {
+    private void agregarCategoria(int idCategoria, String nombreCategoria) {
         DefaultTableModel model = (DefaultTableModel) tblCategorias.getModel();
         model.addRow(new Object[]{idCategoria, nombreCategoria});
     }

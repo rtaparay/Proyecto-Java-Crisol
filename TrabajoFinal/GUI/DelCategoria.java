@@ -6,25 +6,29 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import TrabajoFinal.Categoria;
 public class DelCategoria extends JFrame {
     private JTable tblCategorias;
     private JButton btnEliminar;
 
-    public DelCategoria() {
+    public DelCategoria(Categoria cat) {
         setTitle("Lista de Categorías");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Datos de ejemplo
-        Object[][] data = {
-                {"1", "Categoría 1"},
-                {"2", "Categoría 2"},
-                {"3", "Categoría 3"},
-                {"4", "Categoría 4"},
-                {"5", "Categoría 5"}
-        };
+        ArrayList<Categoria> lCat = new ArrayList<>();
+        lCat = cat.getListaCategorias();
+        int numCat = lCat.size();
+        Object[][] data =  new Object[numCat][2];
+        int numUsuarios = lCat.size();
+        for (int i = 0; i < numUsuarios; i++) {
+            Categoria cat1 = lCat.get(i);
+            data[i][0] = cat1.getId_categoria();
+            data[i][1] = cat1.getNombreCategoria();
 
+        }
         // Nombres de las columnas
         String[] columnNames = {"Id Categoría", "Nombre de Categoría"};
 
@@ -56,10 +60,12 @@ public class DelCategoria extends JFrame {
                         JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
                     // Obtener el índice de la fila seleccionada
-                    int selectedRow = tblCategorias.getSelectedRow();
-
+                    int selectedRow = tblCategorias.getSelectedRow()-1;
+                    String idCat = tblCategorias.getValueAt(selectedRow+1, 0).toString();
+                    int pIdCat = Integer.parseInt(idCat);
+                    cat.eliminar(pIdCat,cat.getListaCategorias());
                     // Eliminar el registro del modelo de tabla
-                    tableModel.removeRow(selectedRow);
+                    tableModel.removeRow(selectedRow+1);
 
                     // Mostrar mensaje de éxito
                     JOptionPane.showMessageDialog(DelCategoria.this, "Registro eliminado exitosamente");

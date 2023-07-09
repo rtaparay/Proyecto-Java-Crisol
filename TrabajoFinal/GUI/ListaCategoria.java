@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Categoria;
+import TrabajoFinal.UsuarioSistema;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class ListaCategoria extends JFrame {
     private JTable tblCategorias;
 
-    public ListaCategoria() {
+    public ListaCategoria(ArrayList<Categoria> listaCategorias) {
         // Configuración básica del formulario
         setTitle("Lista de Categorías");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,18 +28,21 @@ public class ListaCategoria extends JFrame {
         String[] columnNames = {"ID Categoría", "Nombre de Categoría"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblCategorias.setModel(model);
-
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarCategoria("1", "Categoría 1");
-        agregarCategoria("2", "Categoría 2");
-        agregarCategoria("3", "Categoría 3");
-
+        for(Categoria cat : listaCategorias) {
+            int idCategoria = cat.getId_categoria();
+            String nombreCategoria = cat.getNombreCategoria();
+            agregarCategoria(idCategoria,nombreCategoria);
+            // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
+            //agregarCategoria("1", "Categoría 1");
+            //agregarCategoria("2", "Categoría 2");
+            //agregarCategoria("3", "Categoría 3");
+        }
         // Ajustar tamaño y hacer visible el formulario
         pack();
         setVisible(true);
     }
 
-    private void agregarCategoria(String idCategoria, String nombreCategoria) {
+    private void agregarCategoria(int idCategoria, String nombreCategoria) {
         DefaultTableModel model = (DefaultTableModel) tblCategorias.getModel();
         model.addRow(new Object[]{idCategoria, nombreCategoria});
     }

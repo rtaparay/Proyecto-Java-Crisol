@@ -6,7 +6,18 @@ public class Categoria {
     private int id_categoria;
     private String nombreCategoria;
 
-    public Categoria(int id_categoria, String nombreCategoria, String libros, String productos) {
+    public ArrayList<Categoria> getListaCategorias() {
+        return listaCategorias;
+    }
+
+    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+        this.listaCategorias = listaCategorias;
+    }
+
+    private ArrayList<Categoria> listaCategorias;
+
+
+    public Categoria(int id_categoria, String nombreCategoria) {
         this.id_categoria = id_categoria;
         this.nombreCategoria = nombreCategoria;
     }
@@ -35,9 +46,7 @@ public class Categoria {
         this.setListaCategorias(listaCategorias);
     }
 
-    private void setListaCategorias(ArrayList<Categoria> listaCategorias) {
 
-    }
 
     public int getId_categoria() {
         return id_categoria;
@@ -67,7 +76,7 @@ public class Categoria {
                 categoria.setNombreCategoria(nuevoNombre);
             }
         }
-        setListaCategorias(listaCategorias); // Actualizar el ArrayList listaCategorias
+        this.setListaCategorias(listaCategorias); // Actualizar el ArrayList listaCategorias
     }
 
     public void eliminar(int idCategoria, ArrayList<Categoria> listaCategorias) {

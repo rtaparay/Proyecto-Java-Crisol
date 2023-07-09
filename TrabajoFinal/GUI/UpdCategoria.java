@@ -1,17 +1,19 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Categoria;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UpdCategoria extends JFrame {
-    private String idCategoria;
+    private int idCategoria;
     private String nombreCategoria;
     private JTextField txtNombreCategoria;
     private boolean registroActualizado;
 
-    public UpdCategoria(String idCategoria, String nombreCategoria) {
+    public UpdCategoria(int idCategoria, String nombreCategoria, Categoria categoria) {
         this.idCategoria = idCategoria;
         this.nombreCategoria = nombreCategoria;
         registroActualizado = false;
@@ -22,8 +24,10 @@ public class UpdCategoria extends JFrame {
         setLayout(new GridLayout(3, 2));
 
         // Creación de los componentes del formulario
+        String cat;
+        cat = String.valueOf(idCategoria);
         JLabel lblIdCategoria = new JLabel("ID de Categoría:");
-        JTextField txtIdCategoria = new JTextField(idCategoria);
+        JTextField txtIdCategoria = new JTextField(cat);
         txtIdCategoria.setEditable(false);
 
         JLabel lblNombreCategoria = new JLabel("Nombre de Categoría:");
@@ -34,6 +38,10 @@ public class UpdCategoria extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(UpdCategoria.this, "¿Está seguro de actualizar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
+                    String txId = txtIdCategoria.getText();
+                    String nombre = txtNombreCategoria.getText();
+                    int pIntID = Integer.parseInt(txId);
+                    categoria.modificar(pIntID,nombre,categoria.getListaCategorias());
                     actualizarRegistro();
                 }
             }
@@ -56,7 +64,7 @@ public class UpdCategoria extends JFrame {
         return registroActualizado;
     }
 
-    public String getIdCategoria() {
+    public int getIdCategoria() {
         return idCategoria;
     }
 

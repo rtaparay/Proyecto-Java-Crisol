@@ -1,5 +1,6 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Categoria;
 import TrabajoFinal.UsuarioSistema;
 
 import javax.swing.*;
@@ -62,6 +63,9 @@ public class MenuCrisol extends JFrame {
         UsuarioSistema user = new UsuarioSistema("","","","","");
         user.cargaInicial();
         final ArrayList<UsuarioSistema> luser  = user.getLuser();
+        Categoria cat = new Categoria(0,"");
+        cat.cargaInicial();
+        final ArrayList<Categoria> listaCategorias = cat.getListaCategorias();
         JMenu menu = new JMenu(nombre);
 
         // Creación de los elementos del menú
@@ -75,7 +79,7 @@ public class MenuCrisol extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Aqui si alguien quiere le puede meter un case pa darle estilo
                 if(nombre=="Categoría"){
-                    RegistraCategoria registraCategoria = new RegistraCategoria();
+                    RegistraCategoria registraCategoria = new RegistraCategoria(cat);
                 }
                 if(nombre=="Cliente"){
                     RegistraCliente registraCliente = new RegistraCliente();
@@ -107,7 +111,7 @@ public class MenuCrisol extends JFrame {
         itemModificar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(nombre=="Categoría"){
-                    UpdListCategoria updListCategoria = new UpdListCategoria();
+                    UpdListCategoria updListCategoria = new UpdListCategoria(cat);
                 }
                 if(nombre=="Cliente"){
                     UpdListCliente updListCliente = new UpdListCliente();
@@ -138,7 +142,7 @@ public class MenuCrisol extends JFrame {
         itemEliminar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(nombre=="Categoría"){
-                    DelCategoria delCategoria = new DelCategoria();
+                    DelCategoria delCategoria = new DelCategoria(cat);
                 }
                 if(nombre=="Cliente"){
                     DelCliente delCliente = new DelCliente();
@@ -174,7 +178,7 @@ public class MenuCrisol extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
                     if(nombre=="Categoría"){
-                        ListaCategoria listaCategoria = new ListaCategoria();
+                        ListaCategoria listaCategoria = new ListaCategoria(listaCategorias);
                     }
                     if(nombre=="Cliente"){
                         ListaCliente listaCliente = new ListaCliente();

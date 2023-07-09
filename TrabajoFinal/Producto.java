@@ -1,16 +1,10 @@
 package TrabajoFinal;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Producto {
+public abstract  class Producto {
     private int id_producto;
     private double precio;
     private String tipoProducto;
-
-    public Producto(int id_producto, double precio, String tipoProducto) {
-        this.id_producto = id_producto;
-        this.precio = precio;
-        this.tipoProducto = tipoProducto;
-    }
 
     public int getId_producto() {
         return id_producto;
@@ -36,7 +30,13 @@ public class Producto {
         this.tipoProducto = tipoProducto;
     }
 
-       public abstract void registrar(Libro libro, ArrayList<Libro> listaLibros);
+    public Producto(int id_producto, double precio, String tipoProducto) {
+        this.id_producto = id_producto;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
+    }
+
+    public abstract void registrar(Libro libro, ArrayList<Libro> listaLibros);
 
     public abstract void modificar(int idLibro, String nuevoISBN, String nuevoNombreTitulo, int nuevoIdProveedor, String nuevaEdicion,
                                    String nuevoAutor, int nuevoIdCategoria, ArrayList<Libro> listaLibros);
