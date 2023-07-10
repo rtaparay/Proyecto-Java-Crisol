@@ -3,11 +3,19 @@ package TrabajoFinal;
 import java.util.ArrayList;
 
 public class Tienda {
-    protected int id_tienda;
-    protected String RUC;
-    protected String tipoTienda;
-    protected String nombreTienda;
-    protected int trafico;
+    private int id_tienda;
+    private String RUC;
+    private String tipoTienda;
+    private String nombreTienda;
+    private int trafico;
+
+    public Tienda(int id_tienda, String RUC, String tipoTienda, String nombreTienda, int trafico) {
+        this.id_tienda = id_tienda;
+        this.RUC = RUC;
+        this.tipoTienda = tipoTienda;
+        this.nombreTienda = nombreTienda;
+        this.trafico = trafico;
+    }
 
     public Tienda() {
 

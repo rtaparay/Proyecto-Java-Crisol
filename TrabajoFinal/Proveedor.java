@@ -1,6 +1,7 @@
 package TrabajoFinal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Proveedor {
@@ -8,8 +9,23 @@ public class Proveedor {
     private int id_proveedor;
     private String nombreProveedor;
 
+    private ArrayList<Proveedor> proveedores = new ArrayList<>();
+
+    public Proveedor(int id_proveedor, String nombreProveedor) {
+        this.id_proveedor = id_proveedor;
+        this.nombreProveedor = nombreProveedor;
+    }
+
     public Proveedor() {
 
+    }
+
+    public ArrayList<Proveedor> getProveedores() {
+        return proveedores;
+    }
+
+    public void setProveedores(ArrayList<Proveedor> proveedores) {
+        this.proveedores = proveedores;
     }
 
     public int getId_proveedor() {
@@ -28,6 +44,7 @@ public class Proveedor {
         this.nombreProveedor = nombreProveedor;
     }
 
+    /*
     public void registrar() {
         Scanner sc = new Scanner(System.in);
 
@@ -39,7 +56,22 @@ public class Proveedor {
         this.setId_proveedor(codigo);
         this.setNombreProveedor(nombre);
     }
+*/
+    public void registrar(Proveedor proveedor, ArrayList<Proveedor> listaProveedores) {
+        listaProveedores.add(proveedor);
+        setProveedores(listaProveedores);
+    }
 
+    public void modificar(int idProveedor, String nuevoNombreProveedor, ArrayList<Proveedor> listaProveedores) {
+        for (Proveedor proveedor : listaProveedores) {
+            if (proveedor.getId_proveedor() == idProveedor) {
+                proveedor.setNombreProveedor(nuevoNombreProveedor);
+            }
+        }
+        this.setProveedores(listaProveedores); // Actualizar la lista de proveedores
+    }
+
+    /*
     public ArrayList<Proveedor> modificar(ArrayList<Proveedor> data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indique el ID del proveedor que desea modificar");
@@ -62,7 +94,8 @@ public class Proveedor {
         }
         return data;
     }
-
+*/
+    /*
     public ArrayList<Proveedor> eliminar(ArrayList<Proveedor> data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indique el ID del proveedor que desea ELIMINAR");
@@ -87,11 +120,41 @@ public class Proveedor {
             System.out.println("La eliminación del proveedor se realizó con éxito");
         }
         return data;
+    }*/
+    public void eliminar(int idProveedor, ArrayList<Proveedor> listaProveedores) {
+        Iterator<Proveedor> iterator = listaProveedores.iterator();
+        while (iterator.hasNext()) {
+            Proveedor proveedor = iterator.next();
+            if (proveedor.getId_proveedor() == idProveedor) {
+                iterator.remove(); // Eliminar el elemento de manera segura
+            }
+        }
+        setProveedores(listaProveedores); // Actualizar el ArrayList listaProveedores
     }
+
 
     public void imprimir() {
         System.out.println("Id proveedor: " + this.getId_proveedor() +
                 ", Nombre del proveedor: " + this.getNombreProveedor()
         );
+    }
+
+    public void cargaInicial() {
+        ArrayList<Proveedor> listaProveedores = new ArrayList<>();
+        Proveedor proveedor1 = new Proveedor(1, "Proveedor 1");
+        Proveedor proveedor2 = new Proveedor(2, "Proveedor 2");
+        Proveedor proveedor3 = new Proveedor(3, "Proveedor 3");
+        Proveedor proveedor4 = new Proveedor(4, "Proveedor 4");
+        Proveedor proveedor5 = new Proveedor(5, "Proveedor 5");
+        // Agregar más proveedores según sea necesario
+
+        listaProveedores.add(proveedor1);
+        listaProveedores.add(proveedor2);
+        listaProveedores.add(proveedor3);
+        listaProveedores.add(proveedor4);
+        listaProveedores.add(proveedor5);
+        // Agregar más proveedores según sea necesario
+
+        this.setProveedores(listaProveedores);
     }
 }

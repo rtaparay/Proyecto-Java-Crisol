@@ -1,6 +1,7 @@
 package TrabajoFinal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class TiendaFisica extends Tienda {
@@ -9,8 +10,25 @@ public class TiendaFisica extends Tienda {
     private String centroComercial;
     private double costoAlquiler;
 
+    private ArrayList<TiendaFisica> listaTiendaFisica;
     public TiendaFisica() {
 
+    }
+
+    public TiendaFisica(int id_tienda, String RUC, String tipoTienda, String nombreTienda, int trafico, int m2, String distrito, String centroComercial, double costoAlquiler) {
+        super(id_tienda, RUC, tipoTienda, nombreTienda, trafico);
+        this.m2 = m2;
+        this.distrito = distrito;
+        this.centroComercial = centroComercial;
+        this.costoAlquiler = costoAlquiler;
+    }
+
+    public ArrayList<TiendaFisica> getListaTiendaFisica() {
+        return listaTiendaFisica;
+    }
+
+    public void setListaTiendaFisica(ArrayList<TiendaFisica> listaTiendaFisica) {
+        this.listaTiendaFisica = listaTiendaFisica;
     }
 
     public int getM2() {
@@ -80,7 +98,7 @@ public class TiendaFisica extends Tienda {
         this.setCostoAlquiler(costoAlquiler);
 
     }
-
+/*
     public ArrayList<TiendaFisica> modificar(ArrayList<TiendaFisica> data) {
         Scanner sc = new Scanner(System.in);
 
@@ -127,7 +145,23 @@ public class TiendaFisica extends Tienda {
         }
         return data;
     }
-
+*/
+public void modificar(int idTienda, String ruc, String tipoTienda, String nombreTienda, int trafico, int metrosCuadrados,String distrito, String centroComercial, double costoAlquiler, ArrayList<TiendaFisica> tiendaFisicas) {
+    for (TiendaFisica t1 : tiendaFisicas) {
+        if (t1.getId_tienda() == idTienda) {
+            t1.setRUC(ruc);
+            t1.setTipoTienda(tipoTienda);
+            t1.setNombreTienda(nombreTienda);
+            t1.setTrafico(trafico);
+            t1.setM2(metrosCuadrados);
+            t1.setDistrito(distrito);
+            t1.setCentroComercial(centroComercial);
+            t1.setCostoAlquiler(costoAlquiler);
+        }
+    }
+    this.setListaTiendaFisica(tiendaFisicas); // Actualizar la lista de segmentos
+}
+/*
     public ArrayList<TiendaFisica> eliminar(ArrayList<TiendaFisica> data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indique el ID de la tienda física que desea ELIMINAR");
@@ -153,7 +187,17 @@ public class TiendaFisica extends Tienda {
         }
         return data;
     }
-
+*/
+public void eliminar(int idTiendaEcommerce, ArrayList<TiendaFisica> listaTiendaFisica) {
+    Iterator<TiendaFisica> iterator = listaTiendaFisica.iterator();
+    while (iterator.hasNext()) {
+        TiendaFisica tiendaFisica = iterator.next();
+        if (tiendaFisica.getId_tienda() == idTiendaEcommerce) {
+            iterator.remove(); // Eliminar el elemento de manera segura
+        }
+    }
+    this.setListaTiendaFisica(listaTiendaFisica); // Actualizar el ArrayList listaSegmentos
+}
     public void imprimir() {
         System.out.println("Id de la tienda física: " + this.getId_tienda() +
                 ", RUC: " + this.getRUC() +
@@ -165,5 +209,25 @@ public class TiendaFisica extends Tienda {
                 ", ¿Se encuentra en un centro comercial?: " + this.getCentroComercial() +
                 ", Costo de alquiler: " + this.getCostoAlquiler()
         );
+    }
+
+
+    public void cargaInicial() {
+        ArrayList<TiendaFisica> listaTiendaFisica = new ArrayList<>();
+        TiendaFisica t1 = new TiendaFisica(1,"123","ECOM","EBAY",500,512,"SAN MIGUEL","PLAZA",20.0);
+        TiendaFisica t2 = new TiendaFisica(2,"456","FIS","RIPLEY",100,562,"SAN MIGUEL","PLAZA",20.0);
+        TiendaFisica t3 = new TiendaFisica(3,"789","FISX","SAGA",501,502,"SAN MIGUEL","PLAZA",20.0);
+        TiendaFisica t4 = new TiendaFisica(4,"0123","FOS","ZARA",520,51,"SAN MIGUEL","PLAZA",20.0);
+        TiendaFisica t5 = new TiendaFisica(5,"545","E","CRISOL",503,52,"SAN MIGUEL","PLAZA",20.0);
+        // Agregar más proveedores según sea necesario
+
+        listaTiendaFisica.add(t1);
+        listaTiendaFisica.add(t2);
+        listaTiendaFisica.add(t3);
+        listaTiendaFisica.add(t4);
+        listaTiendaFisica.add(t5);
+        // Agregar más proveedores según sea necesario
+
+        this.setListaTiendaFisica(listaTiendaFisica);
     }
 }

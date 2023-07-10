@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Segmento;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,17 +13,17 @@ public class UpdSegmento extends JFrame {
     private JTextField txtDescuento;
     private JButton btnActualizar;
 
-    public UpdSegmento(String idSegmento, String nombreSegmento, String descuento) {
+    public UpdSegmento(char idSegmento, String nombreSegmento, double descuento, Segmento segmento) {
         setTitle("Editar Segmento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(300, 200);
 
-        txtIdSegmento = new JTextField(idSegmento);
+        txtIdSegmento = new JTextField(String.valueOf(idSegmento));
         txtIdSegmento.setEditable(false);
 
         txtNombreSegmento = new JTextField(nombreSegmento);
 
-        txtDescuento = new JTextField(descuento);
+        txtDescuento = new JTextField(String.valueOf(descuento));
 
         btnActualizar = new JButton("Actualizar");
         btnActualizar.addActionListener(new ActionListener() {
@@ -32,9 +34,10 @@ public class UpdSegmento extends JFrame {
                         "Confirmar actualización",
                         JOptionPane.YES_NO_OPTION);
                 if (option == JOptionPane.YES_OPTION) {
-                    // Lógica de actualización del registro
-                    // Aquí puedes obtener los valores de los campos de texto y realizar la actualización
-                    // ...
+                    char idSegmento = txtIdSegmento.getText().charAt(0);
+                    String nombreSegmento = txtNombreSegmento.getText();
+                    double porcentajeDescuento = Double.parseDouble(txtDescuento.getText());
+                    segmento.modificar(idSegmento,nombreSegmento,porcentajeDescuento,segmento.getListaSegmentos());
                     dispose();
                 }
             }

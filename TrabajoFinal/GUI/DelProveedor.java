@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import TrabajoFinal.Proveedor;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -7,25 +10,25 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DelProveedor extends JFrame {
     private JTable tblProveedores;
     private JButton btnEliminar;
 
-    public DelProveedor() {
+    public DelProveedor(Proveedor proveedor) {
         setTitle("Lista de Proveedores");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
-
+        ArrayList<Proveedor> listaProveedores = proveedor.getProveedores();
+        int numProveedores = listaProveedores.size();
+        Object[][] data = new Object[numProveedores][2];
         // Datos de ejemplo
-        Object[][] data = {
-                {"1", "Proveedor 1"},
-                {"2", "Proveedor 2"},
-                {"3", "Proveedor 3"},
-                {"4", "Proveedor 4"},
-                {"5", "Proveedor 5"}
-        };
-
+        for (int i = 0; i < numProveedores; i++) {
+            Proveedor prov1 = listaProveedores.get(i);
+            data[i][0] = prov1.getId_proveedor();
+            data[i][1] = prov1.getNombreProveedor();
+        }
         // Nombres de las columnas
         String[] columnNames = {"Id Proveedor", "Nombre Proveedor"};
 
@@ -58,7 +61,8 @@ public class DelProveedor extends JFrame {
                 if (confirm == JOptionPane.YES_OPTION) {
                     // Obtener el índice de la fila seleccionada
                     int selectedRow = tblProveedores.getSelectedRow();
-
+                    int idProducto = Integer.parseInt(tblProveedores.getValueAt(selectedRow, 0).toString());
+                    proveedor.eliminar(idProducto, proveedor.getProveedores());
                     // Eliminar el registro del modelo de tabla
                     tableModel.removeRow(selectedRow);
 

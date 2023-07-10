@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.TiendaEcommerce;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,19 +16,19 @@ public class UpdTiendaVirtual extends JFrame {
     private JTextField txtProveedorCloud;
     private JTextField txtCostoMantenimiento;
 
-    public UpdTiendaVirtual(String idTienda, String ruc, String tipoTienda, String nombreTienda, String trafico, String proveedorCloud, String costoMantenimiento) {
+    public UpdTiendaVirtual(int idTienda, String ruc, String tipoTienda, String nombreTienda, int trafico, String proveedorCloud, double costoMantenimiento, TiendaEcommerce tiendaEcommerce) {
         setTitle("Actualizar Tienda Virtual");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // Crear los campos de texto
-        txtIdTienda = new JTextField(idTienda);
+        txtIdTienda = new JTextField(String.valueOf(idTienda));
         txtRUC = new JTextField(ruc);
         txtTipoTienda = new JTextField(tipoTienda);
         txtNombreTienda = new JTextField(nombreTienda);
-        txtTrafico = new JTextField(trafico);
+        txtTrafico = new JTextField(String.valueOf(trafico));
         txtProveedorCloud = new JTextField(proveedorCloud);
-        txtCostoMantenimiento = new JTextField(costoMantenimiento);
+        txtCostoMantenimiento = new JTextField(String.valueOf(costoMantenimiento));
 
         // Crear el panel de contenido
         JPanel contentPanel = new JPanel(new GridLayout(7, 2));
@@ -50,21 +52,17 @@ public class UpdTiendaVirtual extends JFrame {
         btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String idTienda = txtIdTienda.getText();
+                int idTienda = Integer.parseInt(txtIdTienda.getText());
                 String ruc = txtRUC.getText();
                 String tipoTienda = txtTipoTienda.getText();
                 String nombreTienda = txtNombreTienda.getText();
-                String trafico = txtTrafico.getText();
+                int trafico = Integer.parseInt(txtTrafico.getText());
                 String proveedorCloud = txtProveedorCloud.getText();
-                String costoMantenimiento = txtCostoMantenimiento.getText();
+                double costoMantenimiento = Double.parseDouble(txtCostoMantenimiento.getText());
 
                 int confirm = JOptionPane.showConfirmDialog(UpdTiendaVirtual.this, "¿Estás seguro de actualizar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    // Aquí puedes realizar la actualización del registro en tu fuente de datos
-                    // Por ejemplo, puedes llamar a un método de actualización de la base de datos
-                    // updateTienda(idTienda, ruc, tipoTienda, nombreTienda, trafico, proveedorCloud, costoMantenimiento);
-
-                    // Luego, cierra la ventana
+                    tiendaEcommerce.modificar(idTienda,ruc,tipoTienda,nombreTienda,trafico,proveedorCloud,costoMantenimiento,tiendaEcommerce.getListaTiendaEcommerce());
                     dispose();
                 }
             }

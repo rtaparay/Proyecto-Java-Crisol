@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Proveedor;
+import TrabajoFinal.Segmento;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class ListaSegmento extends JFrame {
     private JTable tblSegmentos;
 
-    public ListaSegmento() {
+    public ListaSegmento(ArrayList<Segmento> listaSegmentos) {
         // Configuración básica del formulario
         setTitle("Lista de Segmentos");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,17 +29,19 @@ public class ListaSegmento extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblSegmentos.setModel(model);
 
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarSegmento("1", "Segmento 1", "10%");
-        agregarSegmento("2", "Segmento 2", "15%");
-        agregarSegmento("3", "Segmento 3", "20%");
+        for (Segmento seg : listaSegmentos) {
+            char idSegmento = seg.getId_segmento();
+            String nombrSegmento= seg.getNombre_segmento();
+            double porcentajeDescuento = seg.getPorcentaje_descuento();
+            agregarSegmento(idSegmento,nombrSegmento,porcentajeDescuento);
+        }
 
         // Ajustar tamaño y hacer visible el formulario
         pack();
         setVisible(true);
     }
 
-    private void agregarSegmento(String idSegmento, String nombreSegmento, String porcentajeDescuento) {
+    private void agregarSegmento(char idSegmento, String nombreSegmento, double porcentajeDescuento) {
         DefaultTableModel model = (DefaultTableModel) tblSegmentos.getModel();
         model.addRow(new Object[]{idSegmento, nombreSegmento, porcentajeDescuento});
     }

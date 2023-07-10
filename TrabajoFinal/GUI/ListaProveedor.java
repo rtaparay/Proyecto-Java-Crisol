@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import TrabajoFinal.Proveedor;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class ListaProveedor extends JFrame {
     private JTable tblProveedores;
 
-    public ListaProveedor() {
+    public ListaProveedor(ArrayList<Proveedor> listaProveedor) {
         // Configuración básica del formulario
         setTitle("Lista de Proveedores");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,17 +29,17 @@ public class ListaProveedor extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblProveedores.setModel(model);
 
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarProveedor("1", "Proveedor 1");
-        agregarProveedor("2", "Proveedor 2");
-        agregarProveedor("3", "Proveedor 3");
-
+        for (Proveedor prov : listaProveedor) {
+            int idProveedor = prov.getId_proveedor();
+            String nombreProveedor = prov.getNombreProveedor();
+            agregarProveedor(idProveedor,nombreProveedor);
+        }
         // Ajustar tamaño y hacer visible el formulario
         pack();
         setVisible(true);
     }
 
-    private void agregarProveedor(String idProveedor, String nombreProveedor) {
+    private void agregarProveedor(int idProveedor, String nombreProveedor) {
         DefaultTableModel model = (DefaultTableModel) tblProveedores.getModel();
         model.addRow(new Object[]{idProveedor, nombreProveedor});
     }

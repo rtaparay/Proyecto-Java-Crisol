@@ -1,14 +1,30 @@
 package TrabajoFinal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class TiendaEcommerce extends Tienda {
     private String proveedorCloud;
     private double costoMantenimiento;
 
+    private ArrayList<TiendaEcommerce> listaTiendaEcommerce;
     public TiendaEcommerce() {
 
+    }
+
+    public TiendaEcommerce(int id_tienda, String RUC, String tipoTienda, String nombreTienda, int trafico, String proveedorCloud, double costoMantenimiento) {
+        super(id_tienda, RUC, tipoTienda, nombreTienda, trafico);
+        this.proveedorCloud = proveedorCloud;
+        this.costoMantenimiento = costoMantenimiento;
+    }
+
+    public ArrayList<TiendaEcommerce> getListaTiendaEcommerce() {
+        return listaTiendaEcommerce;
+    }
+
+    public void setListaTiendaEcommerce(ArrayList<TiendaEcommerce> listaTiendaEcommerce) {
+        this.listaTiendaEcommerce = listaTiendaEcommerce;
     }
 
     public String getProveedorCloud() {
@@ -27,6 +43,11 @@ public class TiendaEcommerce extends Tienda {
         this.costoMantenimiento = costoMantenimiento;
     }
 
+    public void registrar(TiendaEcommerce tiendaEcommerce, ArrayList<TiendaEcommerce> tiendaEcommerces) {
+        tiendaEcommerces.add(tiendaEcommerce);
+        this.setListaTiendaEcommerce(tiendaEcommerces);
+    }
+    /*
     public void registrar() {
         Scanner sc = new Scanner(System.in);
 
@@ -53,7 +74,8 @@ public class TiendaEcommerce extends Tienda {
         this.setProveedorCloud(proveedorCloud);
         this.setCostoMantenimiento(costoMant);
     }
-
+*/
+    /*
     public ArrayList<TiendaEcommerce> modificar(ArrayList<TiendaEcommerce> data) {
         Scanner sc = new Scanner(System.in);
 
@@ -93,6 +115,21 @@ public class TiendaEcommerce extends Tienda {
         return data;
     }
 
+     */
+    public void modificar(int id_tienda, String RUC, String tipoTienda, String nombreTienda, int trafico, String proveedorCloud, double costoMantenimiento, ArrayList<TiendaEcommerce> tiendaEcommerces) {
+        for (TiendaEcommerce t1 : tiendaEcommerces) {
+            if (t1.getId_tienda() == id_tienda) {
+                t1.setRUC(RUC);
+                t1.setTipoTienda(tipoTienda);
+                t1.setNombreTienda(nombreTienda);
+                t1.setTrafico(trafico);
+                t1.setProveedorCloud(proveedorCloud);
+                t1.setCostoMantenimiento(costoMantenimiento);
+            }
+        }
+        this.setListaTiendaEcommerce(tiendaEcommerces); // Actualizar la lista de segmentos
+    }
+/*
     public ArrayList<TiendaEcommerce> eliminar(ArrayList<TiendaEcommerce> data) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Indique el ID de la tienda e-commerce que desea ELIMINAR");
@@ -118,7 +155,17 @@ public class TiendaEcommerce extends Tienda {
         }
         return data;
     }
-
+*/
+public void eliminar(int idTiendaEcommerce, ArrayList<TiendaEcommerce> listaTiendaEcommerce) {
+    Iterator<TiendaEcommerce> iterator = listaTiendaEcommerce.iterator();
+    while (iterator.hasNext()) {
+        TiendaEcommerce tiendaEcommerce = iterator.next();
+        if (tiendaEcommerce.getId_tienda() == idTiendaEcommerce) {
+            iterator.remove(); // Eliminar el elemento de manera segura
+        }
+    }
+    this.setListaTiendaEcommerce(listaTiendaEcommerce); // Actualizar el ArrayList listaSegmentos
+}
     public void imprimir() {
         System.out.println("Id de la tienda e-commerce: " + this.getId_tienda() +
                 ", RUC: " + this.getRUC() +
@@ -128,5 +175,24 @@ public class TiendaEcommerce extends Tienda {
                 ", Proveedor Cloud: " + this.getProveedorCloud() +
                 ", Costo de mantenimiento: " + this.getCostoMantenimiento()
         );
+    }
+
+    public void cargaInicial() {
+        ArrayList<TiendaEcommerce> listaTiendaEcommerce = new ArrayList<>();
+        TiendaEcommerce t1 = new TiendaEcommerce(1,"123","ECOM","TIENDAMIA",12,"AZURE",15.50);
+        TiendaEcommerce t2 = new TiendaEcommerce(2,"456","ECOM","EBAY",500,"AWS",500.0);
+        TiendaEcommerce t3 = new TiendaEcommerce(3,"789","ECOM","MERCALIBRE",102,"AZURE",155.50);
+        TiendaEcommerce t4 = new TiendaEcommerce(4,"987","ECOM","AMAZON",112,"AWA",145.50);
+        TiendaEcommerce t5 = new TiendaEcommerce(5,"654","ECOM","TOYSTORE",212,"AZURE",615.50);
+        // Agregar más proveedores según sea necesario
+
+        listaTiendaEcommerce.add(t1);
+        listaTiendaEcommerce.add(t2);
+        listaTiendaEcommerce.add(t3);
+        listaTiendaEcommerce.add(t4);
+        listaTiendaEcommerce.add(t5);
+        // Agregar más proveedores según sea necesario
+
+        this.setListaTiendaEcommerce(listaTiendaEcommerce);
     }
 }

@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.TiendaEcommerce;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class RegistraTiendaEcommerce extends JFrame {
     private JTextField txtProveedorCloud;
     private JTextField txtCostoMantenimiento;
 
-    public RegistraTiendaEcommerce() {
+    public RegistraTiendaEcommerce(TiendaEcommerce tiendaEcommerce) {
         // Configuración básica del formulario
         setTitle("Registro de Tienda eCommerce");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -47,7 +49,7 @@ public class RegistraTiendaEcommerce extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(RegistraTiendaEcommerce.this, "¿Está seguro de grabar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    grabarRegistro();
+                    grabarRegistro(tiendaEcommerce);
                 }
             }
         });
@@ -75,15 +77,16 @@ public class RegistraTiendaEcommerce extends JFrame {
         setVisible(true);
     }
 
-    private void grabarRegistro() {
-        String idTienda = txtIdTienda.getText();
+    private void grabarRegistro(TiendaEcommerce tiendaEcommerce) {
+        int idTienda = Integer.parseInt(txtIdTienda.getText());
         String ruc = txtRUC.getText();
         String tipoTienda = txtTipoTienda.getText();
         String nombreTienda = txtNombreTienda.getText();
-        String trafico = txtTrafico.getText();
+        int trafico = Integer.parseInt(txtTrafico.getText());
         String proveedorCloud = txtProveedorCloud.getText();
-        String costoMantenimiento = txtCostoMantenimiento.getText();
-
+        double costoMantenimiento = Double.parseDouble(txtCostoMantenimiento.getText());
+        TiendaEcommerce t1 = new TiendaEcommerce(idTienda,ruc,tipoTienda,nombreTienda,trafico,proveedorCloud,costoMantenimiento);
+        tiendaEcommerce.registrar(t1,tiendaEcommerce.getListaTiendaEcommerce());
         // Aquí puedes realizar la lógica para grabar el registro en tu base de datos o en algún otro medio de almacenamiento
         // Por ahora, simplemente mostraremos un mensaje con los datos ingresados
         String mensaje = "Registro grabado:\n"

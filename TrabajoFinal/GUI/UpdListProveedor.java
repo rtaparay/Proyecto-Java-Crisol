@@ -1,15 +1,19 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import TrabajoFinal.Proveedor;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class UpdListProveedor extends JFrame {
     private JTable tblProveedores;
 
-    public UpdListProveedor() {
+    public UpdListProveedor(Proveedor proveedor) {
         // Configuración básica del formulario
         setTitle("Lista de Proveedores");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,21 +31,26 @@ public class UpdListProveedor extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblProveedores.setModel(model);
 
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarProveedor("1", "Proveedor 1");
-        agregarProveedor("2", "Proveedor 2");
-        agregarProveedor("3", "Proveedor 3");
-
+        ArrayList<Proveedor> listaProveedor = new ArrayList<>();
+        listaProveedor = proveedor.getProveedores();
+        int numLibros = listaProveedor.size();
+        Object[][] data = new Object[numLibros][10];
+        for (int i = 0; i < numLibros; i++) {
+            Proveedor prov1 = listaProveedor.get(i);
+            data[i][0] = prov1.getId_proveedor();
+            data[i][1] = prov1.getNombreProveedor();
+            agregarProveedor(prov1.getId_proveedor(),prov1.getNombreProveedor());
+        }
         // Agregar listener para el clic en la tabla
         tblProveedores.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int selectedRow = tblProveedores.getSelectedRow();
                 if (selectedRow != -1) {
-                    String idProveedor = (String) tblProveedores.getValueAt(selectedRow, 0);
+                    int idProveedor = (int) tblProveedores.getValueAt(selectedRow, 0);
                     String nombreProveedor = (String) tblProveedores.getValueAt(selectedRow, 1);
 
                     // Abrir la ventana de actualización
-                    new UpdProveedor(idProveedor, nombreProveedor);
+                    new UpdProveedor(idProveedor, nombreProveedor,proveedor);
                 }
             }
         });
@@ -51,7 +60,7 @@ public class UpdListProveedor extends JFrame {
         setVisible(true);
     }
 
-    private void agregarProveedor(String idProveedor, String nombreProveedor) {
+    private void agregarProveedor(int idProveedor, String nombreProveedor) {
         DefaultTableModel model = (DefaultTableModel) tblProveedores.getModel();
         model.addRow(new Object[]{idProveedor, nombreProveedor});
     }

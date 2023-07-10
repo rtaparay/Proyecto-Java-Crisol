@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -12,19 +15,28 @@ public class DelLibro extends JFrame {
     private JTable tblLibros;
     private JButton btnEliminar;
 
-    public DelLibro() {
+    public DelLibro(Libro libro) {
         setTitle("Lista de Libros");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Datos de ejemplo
-        Object[][] data = {
-                {"1", "10.00", "Ficción", "1", "1234567890", "Libro A", "1", "1ra Edición", "Autor A", "1"},
-                {"2", "15.00", "No Ficción", "2", "0987654321", "Libro B", "2", "2da Edición", "Autor B", "2"},
-                {"3", "20.00", "Ficción", "3", "9876543210", "Libro C", "3", "3ra Edición", "Autor C", "3"},
-                {"4", "25.00", "No Ficción", "4", "5678901234", "Libro D", "4", "4ta Edición", "Autor D", "4"},
-                {"5", "30.00", "Ficción", "5", "4321098765", "Libro E", "5", "5ta Edición", "Autor E", "5"}
-        };
+        ArrayList<Libro> listaLibros = libro.getListaLibro();
+        int numLibros = listaLibros.size();
+        Object[][] data = new Object[numLibros][10];
+        for (int i = 0; i < numLibros; i++) {
+            Libro libro1 = listaLibros.get(i);
+            data[i][0] = libro1.getId_producto();
+            data[i][1] = libro1.getPrecio();
+            data[i][2] = libro1.getTipoProducto();
+            data[i][3] = libro1.getId_libro();
+            data[i][4] = libro1.getISBN();
+            data[i][5] = libro1.getNombreTitulo();
+            data[i][6] = libro1.getId_proveedor();
+            data[i][7] = libro1.getEdicion();
+            data[i][8] = libro1.getAutor();
+            data[i][9] = libro1.getId_categoria();
+        }
+
 
         // Nombres de las columnas
         String[] columnNames = {"Id de Producto", "Precio", "Tipo de Producto", "Id de Libro", "ISBN", "Título",
@@ -61,9 +73,11 @@ public class DelLibro extends JFrame {
                     int selectedRow = tblLibros.getSelectedRow();
 
                     // Eliminar el registro del modelo de tabla
-                    tableModel.removeRow(selectedRow);
 
+                    int idProducto = Integer.parseInt(tblLibros.getValueAt(selectedRow, 0).toString());
+                    libro.eliminar(idProducto, libro.getListaLibro());
                     // Mostrar mensaje de éxito
+                    tableModel.removeRow(selectedRow);
                     JOptionPane.showMessageDialog(DelLibro.this, "El registro ha sido eliminado exitosamente.");
 
                     // Desactivar el botón Eliminar

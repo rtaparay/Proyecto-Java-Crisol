@@ -161,7 +161,7 @@ public class Main {
     public static ArrayList<Proveedor> proveedor_submenu_registro(ArrayList<Proveedor> data) {
         //Sergio Ayesta
         Proveedor p1 = new Proveedor();
-        p1.registrar();
+        //p1.registrar();
         System.out.println("");
         data.add(p1);
         return data;
@@ -170,14 +170,14 @@ public class Main {
     public static ArrayList<Proveedor> proveedor_submenu_modificar(ArrayList<Proveedor> data) {
         //Sergio Ayesta
         Proveedor p1 = new Proveedor();
-        data = p1.modificar(data);
+        //data = p1.modificar(data);
         return data;
     }
 
     public static ArrayList<Proveedor> proveedor_submenu_eliminar(ArrayList<Proveedor> data) {
         //Sergio Ayesta
         Proveedor p1 = new Proveedor();
-        data = p1.eliminar(data);
+        //data = p1.eliminar(data);
         return data;
     }
 
@@ -213,7 +213,7 @@ public class Main {
     public static ArrayList<Cliente> cliente_submenu_registro(ArrayList<Cliente> data) {
         //RAUL TAPARA
         Cliente c1 = new Cliente();
-        c1.registrar();
+        //c1.registrar();
         System.out.println("");
         data.add(c1);
         return data;
@@ -229,7 +229,7 @@ public class Main {
     public static ArrayList<Cliente> cliente_submenu_eliminar(ArrayList<Cliente> data) {
         //RAUL TAPARA
         Cliente c1 = new Cliente();
-        c1.eliminar(data);
+        //c1.eliminar(data);
         return data;
     }
 
@@ -246,7 +246,7 @@ public class Main {
     public static ArrayList<Segmento> segmento_submenu_registro(ArrayList<Segmento> data) {
         //RAUL TAPARA
         Segmento s1 = new Segmento();
-        s1.registrar();
+        //s1.registrar();
         System.out.println("");
         data.add(s1);
         return data;
@@ -262,7 +262,7 @@ public class Main {
     public static ArrayList<Segmento> segmento_submenu_eliminar(ArrayList<Segmento> data) {
         //RAUL TAPARA
         Segmento s1 = new Segmento();
-        s1.eliminar(data);
+        //s1.eliminar(data);
         return data;
     }
 

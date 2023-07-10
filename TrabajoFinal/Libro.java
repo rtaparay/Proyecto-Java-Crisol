@@ -11,17 +11,44 @@ public class Libro extends Producto {
     private String autor;
     private int id_categoria;
 
-
-    public Libro(int id_producto, double precio, String tipoProducto,
-                 int id_libro, String ISBN, String nombreTitulo, int id_proveedor, String edicion, String autor, int id_categoria) {
+    public Libro(int id_producto, double precio, String tipoProducto, int id_libro, String ISBN, String nombreTitulo, int id_proveedor, String edicion, String autor, int id_categoria) {
         super(id_producto, precio, tipoProducto);
         this.id_libro = id_libro;
         this.ISBN = ISBN;
-        NombreTitulo = nombreTitulo;
+        this.NombreTitulo = nombreTitulo;
         this.id_proveedor = id_proveedor;
         this.edicion = edicion;
         this.autor = autor;
         this.id_categoria = id_categoria;
+    }
+
+    private ArrayList<Libro> listaLibro;
+
+    public ArrayList<Libro> getListaLibro() {
+        return listaLibro;
+    }
+
+    public void setListaLibro(ArrayList<Libro> listaLibro) {
+        this.listaLibro = listaLibro;
+    }
+
+    public void modificar(int idProducto, double nuevoPrecio, String nuevoTipoProducto, int idLibro, String nuevoISBN,
+                          String nuevoNombreTitulo, int idProveedor, String nuevaEdicion, String nuevoAutor,
+                          int nuevoIdCategoria,ArrayList<Libro> listaLibros) {
+        for (Libro libro : listaLibros) {
+            if (libro.getId_producto() == idProducto) {
+                libro.setPrecio(nuevoPrecio);
+                libro.setTipoProducto(nuevoTipoProducto);
+                libro.setId_libro(idLibro);
+                libro.setISBN(nuevoISBN);
+                libro.setNombreTitulo(nuevoNombreTitulo);
+                libro.setId_proveedor(idProveedor);
+                libro.setEdicion(nuevaEdicion);
+                libro.setAutor(nuevoAutor);
+                libro.setId_categoria(nuevoIdCategoria);
+            }
+        }
+        this.setListaLibro(listaLibros);
     }
     public void cargaInicial() {
         ArrayList<Libro> listaLibros = new ArrayList<>();
@@ -48,11 +75,10 @@ public class Libro extends Producto {
         listaLibros.add(libro9);
         listaLibros.add(libro10);
 
-        this.setListaLibros(listaLibros);
+        this.setListaLibro(listaLibros);
     }
 
-    public void setListaLibros(ArrayList<Libro> listaLibros) {
-    }
+
 
     public int getId_libro() {
         return id_libro;
@@ -113,7 +139,7 @@ public class Libro extends Producto {
     @Override
     public void registrar(Libro libro, ArrayList<Libro> listaLibros) {
         listaLibros.add(libro);
-        this.setListaLibros(listaLibros);
+        this.setListaLibro(listaLibros);
     }
 
        @Override
@@ -129,7 +155,7 @@ public class Libro extends Producto {
                 libro.setId_categoria(nuevoIdCategoria);
             }
         }
-        this.setListaLibros(listaLibros);
+        this.setListaLibro(listaLibros);
     }
     @Override
     public void eliminar(int idLibro, ArrayList<Libro> listaLibros) {
@@ -140,7 +166,7 @@ public class Libro extends Producto {
                 iterator.remove(); // Eliminar el elemento de manera segura
             }
         }
-        setListaLibros(listaLibros); // Actualizar el ArrayList listaLibros
+        setListaLibro(listaLibros); // Actualizar el ArrayList listaLibros
     }
     @Override
     public void imprimir() {

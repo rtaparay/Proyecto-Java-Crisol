@@ -7,25 +7,32 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import TrabajoFinal.Cliente;
 public class DelCliente extends JFrame {
     private JTable tblClientes;
     private JButton btnEliminar;
 
-    public DelCliente() {
+    public DelCliente(Cliente cliente) {
         setTitle("Lista de Clientes");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
-
-        // Datos de ejemplo
-        Object[][] data = {
-                {"1", "Juan", "Perez", "Lopez", "5", "10", "100", "A", "1"},
-                {"2", "Maria", "Gomez", "Rodriguez", "3", "8", "200", "B", "2"},
-                {"3", "Carlos", "Lopez", "Hernandez", "4", "12", "150", "A", "1"},
-                {"4", "Laura", "Torres", "Perez", "2", "6", "120", "C", "3"},
-                {"5", "Pedro", "Fernandez", "Gonzalez", "1", "3", "50", "D", "4"}
-        };
-
+        ArrayList<Cliente> listaClientes = cliente.getListaClientes();
+        int numClientes = listaClientes.size();
+        Object[][] data = new Object[numClientes][9];
+        for (int i = 0; i < numClientes; i++) {
+            Cliente cliente1 = listaClientes.get(i);
+            data[i][0] = cliente1.getId_cliente();
+            data[i][1] = cliente1.getNombre();
+            data[i][2] = cliente1.getApellidoPaterno();
+            data[i][3] = cliente1.getApellidoMaterno();
+            data[i][4] = cliente1.getRecency();
+            data[i][5] = cliente1.getFrecuency();
+            data[i][6] = cliente1.getMonetaryValue();
+            data[i][7] = cliente1.getRFM_score();
+            data[i][8] = cliente1.getId_segmento();
+        }
         // Nombres de las columnas
         String[] columnNames = {"Id Cliente", "Nombre", "Apellido Paterno", "Apellido Materno", "Recency", "Frequency",
                 "Monetary Value", "RFM Score", "Id Segmento"};
@@ -59,7 +66,8 @@ public class DelCliente extends JFrame {
                 if (confirm == JOptionPane.YES_OPTION) {
                     // Obtener el índice de la fila seleccionada
                     int selectedRow = tblClientes.getSelectedRow();
-
+                    int idCliente = Integer.parseInt(tblClientes.getValueAt(selectedRow, 0).toString());
+                    cliente.eliminar(idCliente,cliente.getListaClientes());
                     // Eliminar el registro del modelo de tabla
                     tableModel.removeRow(selectedRow);
 

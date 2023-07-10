@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Segmento;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +12,7 @@ public class RegistraSegmento extends JFrame {
     private JTextField txtNombreSegmento;
     private JTextField txtPorcentajeDescuento;
 
-    public RegistraSegmento() {
+    public RegistraSegmento(Segmento segmento) {
         // Configuración básica del formulario
         setTitle("Registro de Segmento");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -31,7 +33,7 @@ public class RegistraSegmento extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(RegistraSegmento.this, "¿Está seguro de grabar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    grabarRegistro();
+                    grabarRegistro(segmento);
                 }
             }
         });
@@ -51,11 +53,12 @@ public class RegistraSegmento extends JFrame {
         setVisible(true);
     }
 
-    private void grabarRegistro() {
-        String idSegmento = txtIdSegmento.getText();
+    private void grabarRegistro(Segmento segmento) {
+        char idSegmento = txtIdSegmento.getText().charAt(0);
         String nombreSegmento = txtNombreSegmento.getText();
-        String porcentajeDescuento = txtPorcentajeDescuento.getText();
-
+        double porcentajeDescuento = Double.parseDouble(txtPorcentajeDescuento.getText());
+        Segmento seg1 =  new Segmento(idSegmento,nombreSegmento,porcentajeDescuento);
+        segmento.registrar(seg1,segmento.getListaSegmentos());
         // Aquí puedes realizar la lógica para grabar el registro en tu base de datos o en algún otro medio de almacenamiento
         // Por ahora, simplemente mostraremos un mensaje con los datos ingresados
         String mensaje = "Registro grabado:\n"

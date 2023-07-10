@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Proveedor;
+import TrabajoFinal.Segmento;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -7,24 +10,27 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DelSegmento extends JFrame {
     private JTable tblSegmentos;
     private JButton btnEliminar;
 
-    public DelSegmento() {
+    public DelSegmento(Segmento segmento) {
         setTitle("Lista de Segmentos");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Datos de ejemplo
-        Object[][] data = {
-                {"1", "Segmento 1", "10%"},
-                {"2", "Segmento 2", "15%"},
-                {"3", "Segmento 3", "20%"},
-                {"4", "Segmento 4", "25%"},
-                {"5", "Segmento 5", "30%"}
-        };
+
+        ArrayList<Segmento> listaSegmentos = segmento.getListaSegmentos();
+        int numSegmento = listaSegmentos.size();
+        Object[][] data = new Object[numSegmento][3];
+        for (int i = 0; i < numSegmento; i++) {
+            Segmento seg1 = listaSegmentos.get(i);
+            data[i][0] = seg1.getId_segmento();
+            data[i][1] = seg1.getNombre_segmento();
+            data[i][2] = seg1.getPorcentaje_descuento();
+        }
 
         // Nombres de las columnas
         String[] columnNames = {"Id Segmento", "Nombre Segmento", "Porcentaje de descuento"};
@@ -59,6 +65,8 @@ public class DelSegmento extends JFrame {
                     // Obtener el índice de la fila seleccionada
                     int selectedRow = tblSegmentos.getSelectedRow();
 
+                    char idSegmento = tblSegmentos.getValueAt(selectedRow, 0).toString().charAt(0);
+                    segmento.eliminar(idSegmento,segmento.getListaSegmentos());
                     // Eliminar el registro del modelo de tabla
                     tableModel.removeRow(selectedRow);
 

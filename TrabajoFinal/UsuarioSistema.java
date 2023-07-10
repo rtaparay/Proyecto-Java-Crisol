@@ -70,7 +70,7 @@ public class UsuarioSistema {
 
     public void registrar(UsuarioSistema usuario, ArrayList<UsuarioSistema> luser) {
         this.luser.add(usuario);
-        //this.setLuser(luser);
+        this.setLuser(luser);
     }
 
     public void modificar(String idUsuario, String nuevoNombre, String nuevoPassword, String nuevoTipoUsuario,

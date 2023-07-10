@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Proveedor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +11,7 @@ public class RegistraProveedor extends JFrame {
     private JTextField txtIdProveedor;
     private JTextField txtNombreProveedor;
 
-    public RegistraProveedor() {
+    public RegistraProveedor(Proveedor proveedor) {
         // Configuración básica del formulario
         setTitle("Registro de Proveedor");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,7 +29,7 @@ public class RegistraProveedor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(RegistraProveedor.this, "¿Está seguro de grabar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    grabarRegistro();
+                    grabarRegistro(proveedor);
                 }
             }
         });
@@ -45,10 +47,11 @@ public class RegistraProveedor extends JFrame {
         setVisible(true);
     }
 
-    private void grabarRegistro() {
-        String idProveedor = txtIdProveedor.getText();
+    private void grabarRegistro(Proveedor proveedor) {
+        int idProveedor = Integer.parseInt(txtIdProveedor.getText());
         String nombreProveedor = txtNombreProveedor.getText();
-
+        Proveedor prov1 = new Proveedor(idProveedor,nombreProveedor);
+        proveedor.registrar(prov1,proveedor.getProveedores());
         // Aquí puedes realizar la lógica para grabar el registro en tu base de datos o en algún otro medio de almacenamiento
         // Por ahora, simplemente mostraremos un mensaje con los datos ingresados
         String mensaje = "Registro grabado:\n"
