@@ -49,28 +49,28 @@ public class Pedido {
         Pedido pedido2 = new Pedido(2,2,2,"05/01/2023",b,igv,dscto,total);
 
         b = 56; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido3 = new Pedido(3,5,56,"15/01/2023",b,igv,dscto,total);
+        Pedido pedido3 = new Pedido(3,5,3,"15/01/2023",b,igv,dscto,total);
 
         b = 86; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido4 = new Pedido(4,22,45,"22/01/2023",b,igv,dscto,total);
+        Pedido pedido4 = new Pedido(4,50,4,"22/01/2023",b,igv,dscto,total);
 
         b = 150; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido5 = new Pedido(5,16,33,"01/02/2023",b,igv,dscto,total);
+        Pedido pedido5 = new Pedido(5,3,5,"01/02/2023",b,igv,dscto,total);
 
         b = 50; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido6 = new Pedido(6,32,53,"10/02/2023",b,igv,dscto,total);
+        Pedido pedido6 = new Pedido(6,4,6,"10/02/2023",b,igv,dscto,total);
 
         b = 200; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido7 = new Pedido(7,22,3,"19/02/2023",b,igv,dscto,total);
+        Pedido pedido7 = new Pedido(7,5,7,"19/02/2023",b,igv,dscto,total);
 
         b = 256; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido8 = new Pedido(8,10,10,"27/02/2023",b,igv,dscto,total);
+        Pedido pedido8 = new Pedido(8,50,8,"27/02/2023",b,igv,dscto,total);
 
         b = 35; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido9 = new Pedido(9,16,65,"01/03/2023",b,igv,dscto,total);
+        Pedido pedido9 = new Pedido(9,2,9,"01/03/2023",b,igv,dscto,total);
 
         b = 120; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
-        Pedido pedido10 = new Pedido(10,19,51,"15/03/2023",b,igv,dscto,total);
+        Pedido pedido10 = new Pedido(10,1,10,"15/03/2023",b,igv,dscto,total);
 
 
         listaPedidos.add(pedido1);

@@ -23,13 +23,13 @@ public class Categoria {
     }
     public void cargaInicial() {
         ArrayList<Categoria> listaCategorias = new ArrayList<>();
-        Categoria categoria1 = new Categoria(1, "Categoría1");
-        Categoria categoria2 = new Categoria(2, "Categoría2");
-        Categoria categoria3 = new Categoria(3, "Categoría3");
-        Categoria categoria4 = new Categoria(4, "Categoría4");
-        Categoria categoria5 = new Categoria(5, "Categoría5");
-        Categoria categoria6 = new Categoria(6, "Categoría6");
-        Categoria categoria7 = new Categoria(7, "Categoría7");
+        Categoria categoria1 = new Categoria(1, "LITERATURA");
+        Categoria categoria2 = new Categoria(2, "NEGOCIOS Y EMPRENDIMIENTO");
+        Categoria categoria3 = new Categoria(3, "INFANTIL");
+        Categoria categoria4 = new Categoria(4, "PSICOLOGIA");
+        Categoria categoria5 = new Categoria(5, "SALUD, BIENESTAR Y AUTOAYUDA");
+        Categoria categoria6 = new Categoria(6, "MARKETING Y ADMINISTRACIÓN");
+        Categoria categoria7 = new Categoria(7, "TECNOLOGÍA");
         Categoria categoria8 = new Categoria(8, "Categoría8");
         Categoria categoria9 = new Categoria(9, "Categoría9");
         Categoria categoria10 = new Categoria(10, "Categoría10");

@@ -1,5 +1,5 @@
 package TrabajoFinal;
-
+/*
 public class Libreria {
     private String RUC;
     private String razonSocial;
@@ -33,3 +33,4 @@ public class Libreria {
 
     }
 }
+*/

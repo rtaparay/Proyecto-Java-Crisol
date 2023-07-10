@@ -214,19 +214,18 @@ public void eliminar(int idTiendaEcommerce, ArrayList<TiendaFisica> listaTiendaF
 
     public void cargaInicial() {
         ArrayList<TiendaFisica> listaTiendaFisica = new ArrayList<>();
-        TiendaFisica t1 = new TiendaFisica(1,"123","ECOM","EBAY",500,512,"SAN MIGUEL","PLAZA",20.0);
-        TiendaFisica t2 = new TiendaFisica(2,"456","FIS","RIPLEY",100,562,"SAN MIGUEL","PLAZA",20.0);
-        TiendaFisica t3 = new TiendaFisica(3,"789","FISX","SAGA",501,502,"SAN MIGUEL","PLAZA",20.0);
-        TiendaFisica t4 = new TiendaFisica(4,"0123","FOS","ZARA",520,51,"SAN MIGUEL","PLAZA",20.0);
-        TiendaFisica t5 = new TiendaFisica(5,"545","E","CRISOL",503,52,"SAN MIGUEL","PLAZA",20.0);
-        // Agregar más proveedores según sea necesario
+        TiendaFisica t1 = new TiendaFisica(1,"20501457869","FIS","TIENDA SAN MIGUEL",500,512,"SAN MIGUEL","PLAZA SAN MIGUEL",2000.0);
+        TiendaFisica t2 = new TiendaFisica(2,"20501457869","FIS","TIENDA MALL PLAZA BELLAVISTA",100,562,"BELLAVISTA","MALL AVENTURA PLAZA",2000.0);
+        TiendaFisica t3 = new TiendaFisica(3,"20501457869","FIS","TIENDA CAMINOS DEL INCA",501,502,"CHACARILLA","X",2000.0);
+        TiendaFisica t4 = new TiendaFisica(4,"20501457869","FIS","TIENDA DIAGONAL",520,51,"MIRAFLORES","X",2000.0);
+        TiendaFisica t5 = new TiendaFisica(5,"20501457869","FIS","TIENDA JOCKEY PLAZA",503,52,"SURCO","JOCKEY PLAZA",2000.0);
+
 
         listaTiendaFisica.add(t1);
         listaTiendaFisica.add(t2);
         listaTiendaFisica.add(t3);
         listaTiendaFisica.add(t4);
         listaTiendaFisica.add(t5);
-        // Agregar más proveedores según sea necesario
 
         this.setListaTiendaFisica(listaTiendaFisica);
     }

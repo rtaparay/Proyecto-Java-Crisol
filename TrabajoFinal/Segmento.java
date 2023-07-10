@@ -104,27 +104,13 @@ public class Segmento {
     public void cargaInicial() {
         ArrayList<Segmento> listaSegmentos = new ArrayList<>();
 
-        Segmento segmento1 = new Segmento('A', "Segmento 1", 0.1);
-        Segmento segmento2 = new Segmento('B', "Segmento 2", 0.2);
-        Segmento segmento3 = new Segmento('C', "Segmento 3", 0.3);
-        Segmento segmento4 = new Segmento('D', "Segmento 4", 0.4);
-        Segmento segmento5 = new Segmento('E', "Segmento 5", 0.5);
-        Segmento segmento6 = new Segmento('F', "Segmento 6", 0.6);
-        Segmento segmento7 = new Segmento('G', "Segmento 7", 0.7);
-        Segmento segmento8 = new Segmento('H', "Segmento 8", 0.8);
-        Segmento segmento9 = new Segmento('I', "Segmento 9", 0.9);
-        Segmento segmento10 = new Segmento('J', "Segmento 10", 1.0);
+        Segmento segmento1 = new Segmento('A', "Segmento A", 0.2);
+        Segmento segmento2 = new Segmento('B', "Segmento B", 0.1);
+        Segmento segmento3 = new Segmento('C', "Segmento C", 0.05);
 
         listaSegmentos.add(segmento1);
         listaSegmentos.add(segmento2);
         listaSegmentos.add(segmento3);
-        listaSegmentos.add(segmento4);
-        listaSegmentos.add(segmento5);
-        listaSegmentos.add(segmento6);
-        listaSegmentos.add(segmento7);
-        listaSegmentos.add(segmento8);
-        listaSegmentos.add(segmento9);
-        listaSegmentos.add(segmento10);
 
         this.setListaSegmentos(listaSegmentos);
     }

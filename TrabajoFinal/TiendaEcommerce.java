@@ -179,19 +179,9 @@ public void eliminar(int idTiendaEcommerce, ArrayList<TiendaEcommerce> listaTien
 
     public void cargaInicial() {
         ArrayList<TiendaEcommerce> listaTiendaEcommerce = new ArrayList<>();
-        TiendaEcommerce t1 = new TiendaEcommerce(1,"123","ECOM","TIENDAMIA",12,"AZURE",15.50);
-        TiendaEcommerce t2 = new TiendaEcommerce(2,"456","ECOM","EBAY",500,"AWS",500.0);
-        TiendaEcommerce t3 = new TiendaEcommerce(3,"789","ECOM","MERCALIBRE",102,"AZURE",155.50);
-        TiendaEcommerce t4 = new TiendaEcommerce(4,"987","ECOM","AMAZON",112,"AWA",145.50);
-        TiendaEcommerce t5 = new TiendaEcommerce(5,"654","ECOM","TOYSTORE",212,"AZURE",615.50);
-        // Agregar más proveedores según sea necesario
+        TiendaEcommerce t1 = new TiendaEcommerce(50,"20501457869","ECOM","E-COMMERCE DE LIBRERIAS CRISOL",112,"AWA",145.50);
 
         listaTiendaEcommerce.add(t1);
-        listaTiendaEcommerce.add(t2);
-        listaTiendaEcommerce.add(t3);
-        listaTiendaEcommerce.add(t4);
-        listaTiendaEcommerce.add(t5);
-        // Agregar más proveedores según sea necesario
 
         this.setListaTiendaEcommerce(listaTiendaEcommerce);
     }

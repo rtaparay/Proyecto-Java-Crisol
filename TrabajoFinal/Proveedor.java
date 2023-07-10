@@ -141,8 +141,8 @@ public class Proveedor {
 
     public void cargaInicial() {
         ArrayList<Proveedor> listaProveedores = new ArrayList<>();
-        Proveedor proveedor1 = new Proveedor(1, "Proveedor 1");
-        Proveedor proveedor2 = new Proveedor(2, "Proveedor 2");
+        Proveedor proveedor1 = new Proveedor(1, "GRUPO PLANETA");
+        Proveedor proveedor2 = new Proveedor(2, "PENGUIN RANDOM HOUSE");
         Proveedor proveedor3 = new Proveedor(3, "Proveedor 3");
         Proveedor proveedor4 = new Proveedor(4, "Proveedor 4");
         Proveedor proveedor5 = new Proveedor(5, "Proveedor 5");
