@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Pedido;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ public class UpdPedido extends JFrame {
     private JTextField txtFecha;
     private JTextField txtMontoBruto;
 
-    public UpdPedido(String idPedido, String idTienda, String idCliente, String fecha, String montoBruto) {
+    public UpdPedido(int idPedido, int idTienda, int idCliente, String fecha, double montoBruto, Pedido pedido) {
         // Configuración básica del formulario
         setTitle("Actualizar Pedido");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -20,26 +22,30 @@ public class UpdPedido extends JFrame {
 
         // Crear los componentes del formulario
         JLabel lblIdPedido = new JLabel("ID Pedido:");
-        txtIdPedido = new JTextField(idPedido);
+        txtIdPedido = new JTextField(String.valueOf(idPedido));
         JLabel lblIdTienda = new JLabel("ID Tienda:");
-        txtIdTienda = new JTextField(idTienda);
+        txtIdTienda = new JTextField(String.valueOf(idTienda));
         JLabel lblIdCliente = new JLabel("ID Cliente:");
-        txtIdCliente = new JTextField(idCliente);
+        txtIdCliente = new JTextField(String.valueOf(idCliente));
         JLabel lblFecha = new JLabel("Fecha:");
         txtFecha = new JTextField(fecha);
         JLabel lblMontoBruto = new JLabel("Monto Bruto:");
-        txtMontoBruto = new JTextField(montoBruto);
+        txtMontoBruto = new JTextField(String.valueOf(montoBruto));
 
         JButton btnActualizar = new JButton("Actualizar");
         btnActualizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Aquí puedes escribir el código para actualizar los datos del pedido
-
+                int idPedido = Integer.parseInt(txtIdPedido.getText());
+                int idTienda = Integer.parseInt(txtIdTienda.getText());
+                int idCliente = Integer.parseInt(txtIdCliente.getText());
+                String fechaPedido = txtFecha.getText();
+                double montoBruto = Double.parseDouble(txtMontoBruto.getText());
                 // Mostrar un mensaje de confirmación
                 int respuesta = JOptionPane.showConfirmDialog(UpdPedido.this, "¿Estás seguro de actualizar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (respuesta == JOptionPane.YES_OPTION) {
                     // Aquí puedes escribir el código para realizar la actualización del registro
-
+                    pedido.modificar(idPedido,idTienda,idCliente,fechaPedido,montoBruto,pedido.getListaPedidos());
                     // Cerrar la ventana de actualización
                     dispose();
                 }

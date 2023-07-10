@@ -98,6 +98,10 @@ public class MenuCrisol extends JFrame {
         tiendaFisica.cargaInicial();
         final ArrayList<TiendaFisica> listaTiendaFisica1 = tiendaFisica.getListaTiendaFisica();
 
+        //Pedidos
+        Pedido pedido = new Pedido(0,0,0,"",0,0,0,0);
+        pedido.cargaInicial();
+        final ArrayList<Pedido> listapedidos = pedido.getListaPedidos();
         JMenu menu = new JMenu(nombre);
         // Creación de los elementos del menú
         itemRegistrar = new JMenuItem("Registrar");
@@ -120,7 +124,7 @@ public class MenuCrisol extends JFrame {
                     RegistraLibro registraLibro = new RegistraLibro(libro);
                 }
                 if(nombre=="Pedido"){
-                    RegistraPedido registraPedido = new RegistraPedido();
+                    RegistraPedido registraPedido = new RegistraPedido(pedido);
                 }
                 if(nombre=="Proveedor"){
                     RegistraProveedor registraProveedor = new RegistraProveedor(prov);
@@ -151,7 +155,7 @@ public class MenuCrisol extends JFrame {
                     UpdListProducto updListProducto = new UpdListProducto(libro);
                 }
                 if(nombre=="Pedido"){
-                    UpdListPedido updListPedido = new UpdListPedido();
+                    UpdListPedido updListPedido = new UpdListPedido(pedido);
                 }
                 if(nombre=="Proveedor"){
                     UpdListProveedor updListProveedor = new UpdListProveedor(prov);
@@ -182,7 +186,7 @@ public class MenuCrisol extends JFrame {
                     DelLibro delLibro = new DelLibro(libro);
                 }
                 if(nombre=="Pedido"){
-                    DelPedido delPedido = new DelPedido();
+                    DelPedido delPedido = new DelPedido(pedido);
                 }
                 if(nombre=="Proveedor"){
                     DelProveedor delProveedor = new DelProveedor(prov);
@@ -218,7 +222,7 @@ public class MenuCrisol extends JFrame {
                         ListaLibro listaLibro = new ListaLibro(listaLibros);
                     }
                     if(nombre=="Pedido"){
-                        ListaPedido listaPedido = new ListaPedido();
+                        ListaPedido listaPedido = new ListaPedido(listapedidos);
                     }
                     if(nombre=="Proveedor"){
                         ListaProveedor listaProveedor = new ListaProveedor(listaProveedores);

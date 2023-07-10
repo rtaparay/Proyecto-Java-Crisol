@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import TrabajoFinal.Pedido;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 public class ListaPedido extends JFrame {
     private JTable tblPedidos;
 
-    public ListaPedido() {
+    public ListaPedido(ArrayList<Pedido> listaPedido) {
         // Configuración básica del formulario
         setTitle("Lista de Pedidos");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,17 +29,25 @@ public class ListaPedido extends JFrame {
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblPedidos.setModel(model);
 
-        // Llenar la tabla con datos de ejemplo (puedes reemplazar esto con tus datos reales)
-        agregarPedido("1", "1001", "2001", "01/01/2022", "100.00", "18.00", "10.00", "108.00");
-        agregarPedido("2", "1002", "2002", "02/01/2022", "200.00", "36.00", "20.00", "216.00");
-        agregarPedido("3", "1003", "2003", "03/01/2022", "150.00", "27.00", "15.00", "162.00");
+        for(Pedido pedido : listaPedido){
+            int id_pedido = pedido.getId_pedido();
+            int id_tienda = pedido.getId_tienda();
+            int id_cliente = pedido.getId_cliente();
+            String fecha = pedido.getFecha();
+            double importeBruto = pedido.getImporteBruto();
+
+            double descuento = pedido.calcularDescuento(importeBruto);
+            double igv = pedido.calcularIGV(importeBruto,descuento);
+            double importeTotal = pedido.calcularImporteTotal(importeBruto,descuento,igv);
+            agregarPedido(id_pedido,id_tienda,id_cliente,fecha,importeBruto,descuento,igv,importeTotal);
+        }
 
         // Ajustar tamaño y hacer visible el formulario
         pack();
         setVisible(true);
     }
 
-    private void agregarPedido(String idPedido, String idTienda, String idCliente, String fechaPedido, String montoBruto, String igv, String descuento, String importeTotal) {
+    private void agregarPedido(int idPedido, int idTienda, int idCliente, String fechaPedido, double montoBruto, double igv, double descuento, double importeTotal) {
         DefaultTableModel model = (DefaultTableModel) tblPedidos.getModel();
         model.addRow(new Object[]{idPedido, idTienda, idCliente, fechaPedido, montoBruto, igv, descuento, importeTotal});
     }

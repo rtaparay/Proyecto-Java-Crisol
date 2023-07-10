@@ -1,5 +1,7 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Pedido;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ public class RegistraPedido extends JFrame {
     private JTextField txtFechaPedido;
     private JTextField txtMontoBruto;
 
-    public RegistraPedido() {
+    public RegistraPedido(Pedido pedido) {
         // Configuración básica del formulario
         setTitle("Registro de Pedido");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,7 +41,8 @@ public class RegistraPedido extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int confirmacion = JOptionPane.showConfirmDialog(RegistraPedido.this, "¿Está seguro de grabar el registro?", "Confirmación", JOptionPane.YES_NO_OPTION);
                 if (confirmacion == JOptionPane.YES_OPTION) {
-                    grabarRegistro();
+
+                    grabarRegistro(pedido);
                 }
             }
         });
@@ -63,13 +66,14 @@ public class RegistraPedido extends JFrame {
         setVisible(true);
     }
 
-    private void grabarRegistro() {
-        String idPedido = txtIdPedido.getText();
-        String idTienda = txtIdTienda.getText();
-        String idCliente = txtIdCliente.getText();
+    private void grabarRegistro(Pedido pedido) {
+        int idPedido = Integer.parseInt(txtIdPedido.getText());
+        int idTienda = Integer.parseInt(txtIdTienda.getText());
+        int idCliente = Integer.parseInt(txtIdCliente.getText());
         String fechaPedido = txtFechaPedido.getText();
-        String montoBruto = txtMontoBruto.getText();
-
+        double montoBruto = Double.parseDouble(txtMontoBruto.getText());
+        Pedido pedido1 = new Pedido(idPedido, idTienda, idCliente, fechaPedido, montoBruto, 0.0, 0.0, 0.0);
+        pedido.registrar(pedido1,pedido.getListaPedidos());
         // Aquí puedes realizar la lógica para grabar el registro en tu base de datos o en algún otro medio de almacenamiento
         // Por ahora, simplemente mostraremos un mensaje con los datos ingresados
         String mensaje = "Registro grabado:\n"

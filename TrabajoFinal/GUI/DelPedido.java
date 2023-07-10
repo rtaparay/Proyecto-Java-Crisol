@@ -1,5 +1,8 @@
 package TrabajoFinal.GUI;
 
+import TrabajoFinal.Libro;
+import TrabajoFinal.Pedido;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -7,28 +10,38 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DelPedido extends JFrame {
     private JTable tblPedidos;
     private JButton btnEliminar;
 
-    public DelPedido() {
+    public DelPedido(Pedido pedido) {
         setTitle("Lista de Pedidos");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Datos de ejemplo
-        Object[][] data = {
-                {"1", "1", "1", "01/01/2022", "100.00", "18.00", "10.00", "108.00"},
-                {"2", "2", "2", "02/01/2022", "150.00", "27.00", "15.00", "162.00"},
-                {"3", "3", "3", "03/01/2022", "200.00", "36.00", "20.00", "216.00"},
-                {"4", "1", "4", "04/01/2022", "250.00", "45.00", "25.00", "270.00"},
-                {"5", "2", "5", "05/01/2022", "300.00", "54.00", "30.00", "324.00"}
-        };
+
+        ArrayList<Pedido> listapedido = pedido.getListaPedidos();
+        int numPedido = listapedido.size();
+        Object[][] data = new Object[numPedido][8];
+        for (int i = 0; i < numPedido; i++) {
+            Pedido pedido1 = listapedido.get(i);
+            data[i][0] = pedido1.getId_pedido();
+            data[i][1] = pedido1.getId_tienda();
+            data[i][2] = pedido1.getId_cliente();
+            data[i][3] = pedido1.getFecha();
+            data[i][4] = pedido1.getImporteBruto();
+            data[i][5] = pedido.calcularDescuento(pedido1.getImporteBruto());
+            data[i][6] = pedido.calcularIGV(pedido1.getImporteBruto(),pedido.calcularDescuento(pedido1.getImporteBruto()));
+            data[i][7] = pedido.calcularImporteTotal(pedido1.getImporteBruto()
+                    ,pedido.calcularDescuento(pedido1.getImporteBruto()),pedido.calcularIGV(pedido1.getImporteBruto(),pedido.calcularDescuento(pedido1.getImporteBruto())));
+
+        }
+
 
         // Nombres de las columnas
-        String[] columnNames = {"Id del pedido", "Id de la tienda", "Id del cliente", "Fecha del pedido",
-                "Monto bruto del pedido", "IGV", "Descuento", "Importe total"};
+        String[] columnNames = {"ID Pedido", "ID Tienda", "ID Cliente", "Fecha del Pedido", "Monto Bruto", "IGV", "Descuento", "Importe Total"};
 
         // Crear el modelo de tabla con los datos y los nombres de las columnas
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
@@ -60,6 +73,8 @@ public class DelPedido extends JFrame {
                     // Obtener el índice de la fila seleccionada
                     int selectedRow = tblPedidos.getSelectedRow();
 
+                    int idPedido = Integer.parseInt(tblPedidos.getValueAt(selectedRow, 0).toString());
+                    pedido.eliminar(idPedido,pedido.getListaPedidos());
                     // Eliminar el registro del modelo de tabla
                     tableModel.removeRow(selectedRow);
 
