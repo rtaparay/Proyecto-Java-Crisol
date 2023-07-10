@@ -13,7 +13,7 @@ public class MenuCrisol extends JFrame {
             menuSegmento, menuTiendaEcommerce, menuTiendaFisica, menuUsuario;
     private JMenuItem itemRegistrar, itemModificar, itemEliminar, itemActualizar;
 
-
+    private JMenuItem masivoRFM, masivoSegmento;
     public MenuCrisol() {
 
 
@@ -108,6 +108,9 @@ public class MenuCrisol extends JFrame {
         itemModificar = new JMenuItem("Modificar");
         itemEliminar = new JMenuItem("Eliminar");
         itemActualizar = new JMenuItem("Listar");
+
+        masivoRFM = new JMenuItem("Proceso Masivo : Actualización Score RFM");
+        masivoSegmento= new JMenuItem("Proceso Masivo : Asignación Segmentos de clientes");
 
         // Configuración de los eventos de los elementos del menú
         itemRegistrar.addActionListener(new ActionListener() {
@@ -252,7 +255,10 @@ public class MenuCrisol extends JFrame {
         menu.add(itemModificar);
         menu.add(itemEliminar);
         menu.add(itemActualizar);
-
+        if(nombre=="Cliente"){
+            menu.add(masivoRFM);
+            menu.add(masivoSegmento);
+        }
         return menu;
     }
 
