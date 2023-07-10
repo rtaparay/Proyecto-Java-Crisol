@@ -249,7 +249,24 @@ public class MenuCrisol extends JFrame {
 
             });
 
+        masivoRFM.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(nombre=="Cliente"){
+                    cliente.actualizarScoreRFM(cliente.getListaClientes());
+                    JOptionPane.showMessageDialog(null,"Se Realizo la actualizacion del Score");
 
+                }
+            }
+        });
+
+        masivoSegmento.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(nombre=="Cliente"){
+                    cliente.actualizarSegmento(cliente.getListaClientes());
+                    JOptionPane.showMessageDialog(null,"Se Realizo la actualizacion del segmento");
+                }
+            }
+        });
         // Agregar los elementos al menú
         menu.add(itemRegistrar);
         menu.add(itemModificar);
