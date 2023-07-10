@@ -225,7 +225,7 @@ public class MenuCrisol extends JFrame {
                         ListaLibro listaLibro = new ListaLibro(listaLibros);
                     }
                     if(nombre=="Pedido"){
-                        ListaPedido listaPedido = new ListaPedido(listapedidos);
+                        ListaPedido listaPedido = new ListaPedido(listapedidos,listaClientes);
                     }
                     if(nombre=="Proveedor"){
                         ListaProveedor listaProveedor = new ListaProveedor(listaProveedores);

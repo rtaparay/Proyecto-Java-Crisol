@@ -262,4 +262,13 @@ public class Cliente {
         }
         setListaClientes(listaClientes); // Actualizar la lista de clientes masivamente con su SEGMENTO
     }
+    public char buscaSegmento(int id_cliente, ArrayList<Cliente> clientes){
+        char id_segmento= ' ';
+        for (Cliente cliente1 : clientes) {
+            if (cliente1.getId_cliente() == id_cliente) {
+                id_segmento = cliente1.getId_segmento();
+            }
+        }
+        return id_segmento;
+    }
 }
