@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+/*
         //********************************
         //Submenu1 -> PROVEEDORES
         //Sergio Ayesta
@@ -274,5 +275,7 @@ public class Main {
         for (Segmento s : data) {
             s.imprimir();
         }
+    }
+    */
     }
 }
