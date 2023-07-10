@@ -133,17 +133,6 @@ public class Cliente {
         }
         this.setListaClientes(listaClientes);
     }
-    public void eliminar(int idCliente, ArrayList<Cliente> listaClientes) {
-        Iterator<Cliente> iterator = listaClientes.iterator();
-        while (iterator.hasNext()) {
-            Cliente cliente = iterator.next();
-            if (cliente.getId_cliente() == idCliente) {
-                iterator.remove(); // Eliminar el elemento de manera segura
-            }
-        }
-        setListaClientes(listaClientes); // Actualizar la lista de clientes
-    }
-
     public void imprimir() {
         System.out.println("ID Cliente: " + id_cliente);
         System.out.println("Nombre: " + nombre);
@@ -156,22 +145,33 @@ public class Cliente {
         System.out.println("ID Segmento: " + id_segmento);
     }
 
+    public void eliminar(int idCliente, ArrayList<Cliente> listaClientes) {
+        Iterator<Cliente> iterator = listaClientes.iterator();
+        while (iterator.hasNext()) {
+            Cliente cliente = iterator.next();
+            if (cliente.getId_cliente() == idCliente) {
+                iterator.remove(); // Eliminar el elemento de manera segura
+            }
+        }
+        setListaClientes(listaClientes); // Actualizar la lista de clientes
+    }
+
     public ArrayList<Cliente> modificar(ArrayList<Cliente> data) {
         return null;
     }
 
     public void cargaInicial() {
         ArrayList<Cliente> listaClientes = new ArrayList<>();
-        Cliente cliente1 = new Cliente(1, "Cliente1", "Apellido1", "Apellido2", 10, 5, 100.0, 5, 'A');
-        Cliente cliente2 = new Cliente(2, "Cliente2", "Apellido1", "Apellido2", 5, 3, 50.0, 3, 'B');
-        Cliente cliente3 = new Cliente(3, "Cliente3", "Apellido1", "Apellido2", 2, 1, 10.0, 1, 'C');
-        Cliente cliente4 = new Cliente(4, "Cliente4", "Apellido1", "Apellido2", 8, 4, 80.0, 4, 'A');
-        Cliente cliente5 = new Cliente(5, "Cliente5", "Apellido1", "Apellido2", 6, 2, 60.0, 2, 'B');
-        Cliente cliente6 = new Cliente(6, "Cliente6", "Apellido1", "Apellido2", 4, 1, 40.0, 1, 'C');
-        Cliente cliente7 = new Cliente(7, "Cliente7", "Apellido1", "Apellido2", 9, 5, 90.0, 5, 'A');
-        Cliente cliente8 = new Cliente(8, "Cliente8", "Apellido1", "Apellido2", 7, 3, 70.0, 3, 'B');
-        Cliente cliente9 = new Cliente(9, "Cliente9", "Apellido1", "Apellido2", 3, 2, 30.0, 2, 'C');
-        Cliente cliente10 = new Cliente(10, "Cliente10", "Apellido1", "Apellido2", 10, 4, 100.0, 4, 'A');
+        Cliente cliente1 = new Cliente(1, "SERGIO", "AYESTA", "RAMOS", 3, 1, 350.0, 0, ' ');
+        Cliente cliente2 = new Cliente(2, "HUBERT", "GUERRERO", " ", 10, 4, 250.0, 0, ' ');
+        Cliente cliente3 = new Cliente(3, "RAUL", "TAPARA", " ", 8, 5, 170.0, 0, ' ');
+        Cliente cliente4 = new Cliente(4, "ALBERTO", "PRADO", " ", 15, 6, 80.0, 0, ' ');
+        Cliente cliente5 = new Cliente(5, "JAMES", "HUIZA", " ", 8, 3, 30.0, 0, ' ');
+        Cliente cliente6 = new Cliente(6, "JOAN", "SERRATO", " ", 5, 2, 40.0, 0, ' ');
+        Cliente cliente7 = new Cliente(7, "Cliente7", "Apellido1", "Apellido2", 3, 3, 70.0, 0, ' ');
+        Cliente cliente8 = new Cliente(8, "Cliente8", "Apellido1", "Apellido2", 2, 1, 180.0, 0, ' ');
+        Cliente cliente9 = new Cliente(9, "Cliente9", "Apellido1", "Apellido2", 1, 2, 290.0, 0, ' ');
+        Cliente cliente10 = new Cliente(10, "Cliente10", "Apellido1", "Apellido2", 1, 8, 400.0, 0, ' ');
         listaClientes.add(cliente1);
         listaClientes.add(cliente2);
         listaClientes.add(cliente3);
@@ -183,5 +183,83 @@ public class Cliente {
         listaClientes.add(cliente9);
         listaClientes.add(cliente10);
         this.setListaClientes(listaClientes);
+    }
+
+    public void actualizarScoreRFM(ArrayList<Cliente> listaClientes) {
+        Iterator<Cliente> iterator = listaClientes.iterator();
+        int puntajeR = 0;
+        int puntajeF = 0;
+        int puntajeM = 0;
+        String puntajeConcatenado;
+        int puntajeRFM = 0;
+
+        while (iterator.hasNext()) {
+            Cliente cliente = iterator.next();
+
+            //Puntaje R
+            if (cliente.getRecency() == 1) {
+                puntajeR = 5;
+            } else if (cliente.getRecency() >= 2 && cliente.getRecency() <= 3) {
+                puntajeR = 4;
+            } else if (cliente.getRecency() >= 4 && cliente.getRecency() <= 6) {
+                puntajeR = 3;
+            } else if (cliente.getRecency() >= 7 && cliente.getRecency() <= 12) {
+                puntajeR = 2;
+            } else if (cliente.getRecency() > 12) {
+                puntajeR = 1;
+            }
+
+            //Puntaje F
+            if (cliente.getFrecuency() == 1) {
+                puntajeF = 5;
+            } else if (cliente.getFrecuency() == 2) {
+                puntajeF = 4;
+            } else if (cliente.getFrecuency() == 3) {
+                puntajeF = 3;
+            } else if (cliente.getFrecuency() >= 4 && cliente.getFrecuency() <= 6) {
+                puntajeF = 2;
+            } else if (cliente.getFrecuency() >= 7) {
+                puntajeF = 1;
+            }
+
+            //Puntaje M
+            if (cliente.getMonetaryValue() > 300) {
+                puntajeM = 5;
+            } else if (cliente.getMonetaryValue() >= 200 && cliente.getMonetaryValue() <= 300) {
+                puntajeM = 4;
+            } else if (cliente.getMonetaryValue() >= 100 && cliente.getMonetaryValue() <= 199) {
+                puntajeM = 3;
+            } else if (cliente.getMonetaryValue() >= 50 && cliente.getMonetaryValue() <= 99) {
+                puntajeM = 2;
+            } else if (cliente.getMonetaryValue() < 50) {
+                puntajeM = 1;
+            }
+
+            puntajeConcatenado = Integer.toString(puntajeR) + Integer.toString(puntajeF) + Integer.toString(puntajeM);
+            puntajeRFM =  Integer.valueOf(puntajeConcatenado);
+            cliente.setRFM_score(puntajeRFM);
+        }
+        setListaClientes(listaClientes); // Actualizar la lista de clientes masivamente con su SCORE RFM
+
+    }
+
+    public void actualizarSegmento(ArrayList<Cliente> listaClientes) {
+        Iterator<Cliente> iterator = listaClientes.iterator();
+        char segmento = 'X';
+
+        while (iterator.hasNext()) {
+            Cliente cliente = iterator.next();
+
+            if (cliente.getRFM_score() >= 500 && cliente.getRFM_score() <= 555) {
+                segmento = 'A';
+            } else if (cliente.getRFM_score() >= 400 && cliente.getRFM_score() <= 499) {
+                segmento = 'B';
+            } else {
+                segmento = 'C';
+            }
+
+            cliente.setId_segmento(segmento);
+        }
+        setListaClientes(listaClientes); // Actualizar la lista de clientes masivamente con su SEGMENTO
     }
 }
