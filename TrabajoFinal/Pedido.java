@@ -1,6 +1,7 @@
 package TrabajoFinal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Pedido {
@@ -14,9 +15,78 @@ public class Pedido {
     private double descuento;
     private double importeTotal;
 
-    public Pedido() {
 
+    private ArrayList<Pedido> listaPedidos;
+
+    public ArrayList<Pedido> getListaPedidos() {
+        return listaPedidos;
     }
+
+    private void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
+    }
+
+    public Pedido() {}
+
+    public Pedido(int id_pedido, int id_tienda, int id_cliente, String fecha, double importeBruto, double igv, double descuento, double importeTotal) {
+        this.id_pedido = id_pedido;
+        this.id_tienda = id_tienda;
+        this.id_cliente = id_cliente;
+        this.fecha = fecha;
+        this.importeBruto = importeBruto;
+        this.igv = igv;
+        this.descuento = descuento;
+        this.importeTotal = importeTotal;
+    }
+
+    public void cargaInicial() {
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+
+        double b = 100, dscto = calcularDescuento(b), igv = calcularIGV(b,dscto), total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido1 = new Pedido(1,1,1,"01/01/2023",b,igv,dscto,total);
+
+        b = 48; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido2 = new Pedido(2,2,2,"05/01/2023",b,igv,dscto,total);
+
+        b = 56; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido3 = new Pedido(3,5,56,"15/01/2023",b,igv,dscto,total);
+
+        b = 86; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido4 = new Pedido(4,22,45,"22/01/2023",b,igv,dscto,total);
+
+        b = 150; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido5 = new Pedido(5,16,33,"01/02/2023",b,igv,dscto,total);
+
+        b = 50; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido6 = new Pedido(6,32,53,"10/02/2023",b,igv,dscto,total);
+
+        b = 200; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido7 = new Pedido(7,22,3,"19/02/2023",b,igv,dscto,total);
+
+        b = 256; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido8 = new Pedido(8,10,10,"27/02/2023",b,igv,dscto,total);
+
+        b = 35; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido9 = new Pedido(9,16,65,"01/03/2023",b,igv,dscto,total);
+
+        b = 120; dscto = calcularDescuento(b); igv = calcularIGV(b,dscto); total = calcularImporteTotal(b,dscto,igv);
+        Pedido pedido10 = new Pedido(10,19,51,"15/03/2023",b,igv,dscto,total);
+
+
+        listaPedidos.add(pedido1);
+        listaPedidos.add(pedido2);
+        listaPedidos.add(pedido3);
+        listaPedidos.add(pedido4);
+        listaPedidos.add(pedido5);
+        listaPedidos.add(pedido6);
+        listaPedidos.add(pedido7);
+        listaPedidos.add(pedido8);
+        listaPedidos.add(pedido9);
+        listaPedidos.add(pedido10);
+
+        this.setListaPedidos(listaPedidos);
+    }
+
 
     public int getId_pedido() {
         return id_pedido;
@@ -82,107 +152,41 @@ public class Pedido {
         this.importeTotal = importeTotal;
     }
 
-    public void registrar() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Ingrese id del pedido: ");
-        int id_p = Integer.parseInt(sc.nextLine());
-
-        System.out.println("Ingrese el id de la tienda: ");
-        int id_t = Integer.parseInt(sc.nextLine());
-
-        System.out.println("Ingrese el id del cliente: ");
-        int id_c = Integer.parseInt(sc.nextLine());
-
-        System.out.println("Ingrese la fecha del pedido: ");
-        String f = sc.nextLine();
-
-        System.out.println("Ingrese el monto bruto del pedido: ");
-        double b = sc.nextDouble();
-
-        double dscto = calcularDescuento(b);
-        double igv = calcularIGV(b,dscto);
-        double total = calcularImporteTotal(b,dscto,igv);
-
-        this.setId_pedido(id_p);
-        this.setId_tienda(id_t);
-        this.setId_cliente(id_c);
-        this.setFecha(f);
-        this.setImporteBruto(b);
-        this.setDescuento(dscto);
-        this.setIgv(igv);
-        this.setImporteTotal(total);
+    public void registrar(Pedido pedido, ArrayList<Pedido> listaPedidos) {
+        listaPedidos.add(pedido);
+        setListaPedidos(listaPedidos); // Actualizar el ArrayList listaPedidos
     }
 
-    public ArrayList<Pedido> modificar(ArrayList<Pedido> data) {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Indique el ID del pedido que desea modificar");
-        int id = Integer.parseInt(sc.nextLine());
-        boolean idExisteEnData = false;
-        for (Pedido p: data) {
-            if (p.getId_pedido() == id) {
-                idExisteEnData = true;
-                System.out.println("Se encontraron los siguientes datos registrados con el ID: " + id);
-                p.imprimir();
-                System.out.println("");
+    public void modificar(int id_pedido, int id_tienda, int id_cliente, String fecha, double importeBruto,
+                          ArrayList<Pedido> listaPedidos) {
+        for (Pedido pedido: listaPedidos) {
+            if (pedido.getId_pedido() == id_pedido) {
+                pedido.setId_tienda(id_tienda);
+                pedido.setId_cliente(id_cliente);
+                pedido.setFecha(fecha);
+                pedido.setImporteBruto(importeBruto);
 
-                System.out.println("Ingrese el ID de tienda del pedido: ");
-                int id_t = Integer.parseInt(sc.nextLine());
-
-                System.out.println("Ingrese el ID del cliente del pedido: ");
-                int id_c = Integer.parseInt(sc.nextLine());
-
-                System.out.println("Ingrese la FECHA del pedido: ");
-                String f = sc.nextLine();
-
-                System.out.println("Ingrese el MONTO BRUTO del pedido: ");
-                double b = sc.nextDouble();
-
-                double dscto = calcularDescuento(b);
-                double igv = calcularIGV(b,dscto);
-                double total = calcularImporteTotal(b,dscto,igv);
-
-                p.setId_tienda(id_t);
-                p.setId_cliente(id_c);
-                p.setFecha(f);
-                p.setImporteBruto(b);
-                p.setDescuento(dscto);
-                p.setIgv(igv);
-                p.setImporteTotal(total);
-                System.out.println("La modificación de los datos del pedido se realizaron con éxito");
+                double dscto = this.calcularDescuento(importeBruto);
+                double igv = this.calcularIGV(importeBruto, dscto);
+                double total = this.calcularImporteTotal(importeBruto, dscto, igv);
+                pedido.setIgv(igv);
+                pedido.setDescuento(dscto);
+                pedido.setImporteTotal(total);
             }
         }
-        if (idExisteEnData == false) {
-            System.out.println("El ID del pedido que intenta modificar no existe en la base de datos");
-        }
-        return data;
+        setListaPedidos(listaPedidos); // Actualizar el ArrayList listaPedidos
     }
 
-    public ArrayList<Pedido> eliminar(ArrayList<Pedido> data) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Indique el ID del pedido que desea ELIMINAR");
-        int id = Integer.parseInt(sc.nextLine());
-        boolean idExisteEnData = false;
-        int index = 0;
-
-        for (Pedido p: data) {
-            if (p.getId_pedido() == id) {
-                idExisteEnData = true;
-                System.out.println("Se encontraron los siguientes datos registrados con el ID: " + id);
-                p.imprimir();
-                index = data.indexOf(p);
-                break;
+    public void eliminar(int id_pedido, ArrayList<Pedido> listaPedidos) {
+        Iterator<Pedido> iterator = listaPedidos.iterator();
+        while (iterator.hasNext()) {
+            Pedido pedido = iterator.next();
+            if (pedido.getId_pedido() == id_pedido) {
+                iterator.remove(); // Eliminar el elemento de manera segura
             }
         }
-
-        if (idExisteEnData == false) {
-            System.out.println("El ID del pedido que intenta eliminar no existe en la base de datos");
-        } else {
-            data.remove(index);
-            System.out.println("La eliminación del pedido se realizó con éxito");
-        }
-        return data;
+        setListaPedidos(listaPedidos); // Actualizar el ArrayList listaPedidos
     }
 
     public void imprimir() {
