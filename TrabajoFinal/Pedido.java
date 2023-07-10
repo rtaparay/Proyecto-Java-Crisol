@@ -168,8 +168,8 @@ public class Pedido {
                 pedido.setImporteBruto(importeBruto);
 
                 double dscto = this.calcularDescuento(importeBruto);
-                double igv = this.calcularIGV(importeBruto, dscto);
-                double total = this.calcularImporteTotal(importeBruto, dscto, igv);
+                double igv = Math.round(this.calcularIGV(importeBruto, dscto)*100.0)/100.0;
+                double total = Math.round(this.calcularImporteTotal(importeBruto, dscto, igv)*100.0)/100.0;
                 pedido.setIgv(igv);
                 pedido.setDescuento(dscto);
                 pedido.setImporteTotal(total);
@@ -202,13 +202,13 @@ public class Pedido {
     }
 
     public double calcularIGV(double bruto, double dscto) {
-        return (bruto - dscto) * 0.18;
+        double igv = (bruto - dscto) * 0.18;
+        igv = Math.round(igv*100.0)/100.0;
+        return igv;
+
     }
 
     public double calcularDescuento(double bruto) {
-
-        //Luego de que se implemente las clases Cliente y Segmento, agregar búsqueda
-        // de segmento al cual pertenece el cliente
 
         char segmento = 'A';
         double dscto = 0.0;
@@ -226,7 +226,8 @@ public class Pedido {
             default:
                 dscto = 0.0;
         }
-        return bruto * dscto;
+
+        return Math.round((bruto * dscto)*100.0)/100.0;
     }
 
     public double calcularImporteTotal(double b, double dscto, double igv) {
